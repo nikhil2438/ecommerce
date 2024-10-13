@@ -20,6 +20,10 @@ import Wishlist from "./Component/Wishlist";
 import Orders from './Component/Order';
 import ChangePassword from './Component/ChangePassword';
 import Deleteaccount from "./Component/Deleteaccount";
+import Hero from './Component/Hero';
+import ProductPage from './Component/ProductPage';
+import CreateAccountPage from "./Component/CreateAccountPage";
+
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -142,10 +146,12 @@ const App = () => {
                 <li>
                   <Link to="/about">About</Link>
                 </li>
-                <li>
-                  <Link to="/Helloguest">Hello guest</Link>
-                  <h5>Sign</h5>
-                </li>
+                
+                  
+                
+            
+
+  
                 <li>
                   <Link to="/CorporateGifting">Corporate Gifting</Link>
                 </li>
@@ -158,6 +164,10 @@ const App = () => {
                 </li>
                 <li>
                   <Link to="/contact">Contact Us</Link>
+                </li>
+                <li>
+                  <Link to="/Helloguest">Hello guest</Link>
+                  <h5>Sign</h5>
                 </li>
                 <li>
                   <Link to="/Cart">Cart</Link>
@@ -188,6 +198,10 @@ const App = () => {
         <Route path="/accountmenu" element={<AccountMenu />} />
        <Route path="/changepassword" element={<ChangePassword/>}/>
        <Route path="/deleteaccount" element={<Deleteaccount/>}/>
+       <Route path="/" element={<Hero />} />
+       <Route path="/productPage" element={<ProductPage />} />
+       <Route path="/signin" element={<SignInPage />} />
+       <Route path="/new-user" element={<CreateAccountPage />} />
       </Routes>
     </Router>
     

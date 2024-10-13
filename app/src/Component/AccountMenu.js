@@ -18,7 +18,6 @@ const AccountMenu = () => {
     // Perform sign-out logic here (e.g., clear tokens or session)
     localStorage.clear(); // Example: Clearing local storage or tokens
 
-    // Redirect to homepage after sign-out
     navigate('/');
   };
 

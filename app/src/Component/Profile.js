@@ -6,7 +6,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const handleEditClick = () => {
-    navigate('/edit-profile'); // Redirect to the form page
+    navigate('/edit-profile'); 
   };
 
   return (

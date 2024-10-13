@@ -30,7 +30,7 @@ const Gettouch = () => {
           </p>
 
           <button class=" px-4 py-2 hover:bg-yellow-300 bg-slate-900 rounded-full text-white	 ">
-            Call me
+            Starting chating
           </button>
         </div>
         <div class="border border-slate-400 p-3  shadow-lg">
@@ -48,17 +48,14 @@ const Gettouch = () => {
               />
             </svg>
           </div>
-          <h5 class="text-xl font-bold text-slate-700">Chat right now</h5>
+          <h5 class="text-xl font-bold text-slate-700">Have us call you</h5>
           <p>
-            Our messaging assistant can quickly solve many issues or direct you
-            to the right person or place.
+          We'll first get a few details about your issue and then someone will call you right away.
           </p>
-          <p class="text-lg mt-3 font-bold text-slate-900">
-            Instant chat and always available.
-          </p>
+          
 
-          <button class=" px-4 py-2 hover:bg-yellow-300 bg-slate-900 rounded-full text-white	 ">
-            call
+          <button class=" px-4 py-4 hover:bg-yellow-300 bg-slate-900 rounded-full text-white	 ">
+            call me
           </button>
         </div>
         <div class="hidden md:block w-32"></div>
