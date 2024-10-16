@@ -25,8 +25,9 @@ const AccountMenu = () => {
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <Link to="/Helloguest">
         <span className="text-white cursor-pointer">Hello Guest</span>
+
       </Link>
-      <p>Sign In</p>
+      <p className="text-white cursor-pointer">Sign In</p>
 
       {isOpen && (
         <div className="absolute top-full right-0 bg-slate-800 text-white p-5 shadow-lg w-80 z-20 md:h-96 mt-4">
@@ -47,7 +48,7 @@ const AccountMenu = () => {
             <li className="hover:bg-gray-700 p-2 cursor-pointer">
               <Link to="/deleteaccount">Delete Your Account</Link>
             </li>
-            {/* Sign Out button */}
+            
             <li className="hover:bg-gray-700 p-2 cursor-pointer" onClick={handleSignOut}>
               Sign Out
             </li>

@@ -3,11 +3,15 @@ import Time1 from "../image/Watch4.jpg";
 import Time2 from "../image/Watch2.jpg";
 import Time3 from "../image/Time2.png";
 import Time4 from "../image/Watch1.jpg";
-
+import rep from   "../image/rep.jpg";
 import Puma from "../image/Puma.jpg"; 
 import shirt from "../image/shirt.jpg";
 import shoes from "../image/shoes.jpg";
 import Footer from "./Footer";
+import secu from   "../image/secu.jpg";
+import car from   "../image/car.jpg";
+import free from   "../image/free.jpg";
+import lock from   "../image/lock.jpg";
 const ProductPage = () => {
   
   const [currentImage, setCurrentImage] = useState(Time1);
@@ -152,11 +156,11 @@ const ProductPage = () => {
               </div>
 
               {/* No Cost EMI */}
-              {/* <div className="border rounded-lg p-4 shadow-md">
+              { <div className="border rounded-lg p-4 shadow-md">
                   <h4 className="text-gray-800 font-semibold">No Cost EMI</h4>
                   <p className="text-sm text-gray-600">Upto ₹2,947.70 EMI interest savings on select Credit Cards</p>
                   <a href="#" className="text-blue-600 text-sm mt-2 inline-block">1 offer &gt;</a>
-                </div> */}
+                </div> }
 
               {/* Partner Offers */}
               <div className="border rounded-lg p-4 shadow-md">
@@ -174,23 +178,23 @@ const ProductPage = () => {
           {/* SVG Section Below Offers */}
           <div className="mt-4 grid grid-cols-2 md:grid-cols-5 gap-4 max-w-3xl">
             <div className="flex flex-col items-center">
-              <img src={Time2} alt="10 Days Returnable" className="h-8 w-8" />
-              <p className="text-gray-600 text-sm mt-2">10 days Returnable</p>
+              <img src={rep} alt="10 Days Returnable" className="h-8 w-8" />
+              <p className="text-gray-600 text-sm mt-2">10 days Replacement</p>
             </div>
             <div className="flex flex-col items-center">
-              <img src={Time2} alt="Amazon Delivered" className="h-8 w-8" />
+              <img src={car} alt="Amazon Delivered" className="h-8 w-8" />
               <p className="text-gray-600 text-sm mt-2">Amazon Delivered</p>
             </div>
             <div className="flex flex-col items-center">
-              <img src={Time2} alt="Free Delivery" className="h-8 w-8" />
+              <img src={free} alt="Free Delivery" className="h-8 w-8" />
               <p className="text-gray-600 text-sm mt-2">Free Delivery</p>
             </div>
             <div className="flex flex-col items-center">
-              <img src={Time2} alt="Top Brand" className="h-8 w-8" />
+              <img src={secu} alt="Top Brand" className="h-8 w-8" />
               <p className="text-gray-600 text-sm mt-2">Top Brand</p>
             </div>
             <div className="flex flex-col items-center">
-              <img src={Time2} alt="Secure transaction" className="h-8 w-8" />
+              <img src={lock} alt="Secure transaction" className="h-8 w-8" />
               <p className="text-gray-600 text-sm mt-2">Secure transaction</p>
             </div>
           </div>
@@ -268,7 +272,7 @@ const ProductPage = () => {
                   </p>
                   <p>
                     <strong>Generic Name:</strong> Casual Watch
-                  </p>
+                  </p>  
                 </div>
               </div>
             </div>
