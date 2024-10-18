@@ -1,9 +1,5 @@
-
-
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 
 const EditProfile = () => {
   const navigate = useNavigate(); 
@@ -15,6 +11,9 @@ const EditProfile = () => {
     address: '',
   });
 
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -23,9 +22,30 @@ const EditProfile = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  // Updated handleSubmit with POST request
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    try {
+      const response = await fetch('https://e-commerce-backend-lc8o.onrender.com/users/UpdateProfile', {
+        method: 'POST', // Changed to POST
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData), // Sending formData as JSON
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSuccess(true);
+        navigate('/profile'); // Navigate to profile after successful update
+      } else {
+        setError(result.message || 'Update failed. Please check your inputs.');
+      }
+    } catch (error) {
+      setError('An error occurred while updating the profile. Please try again later.');
+    }
   };
 
   const handleCancel = () => {
@@ -103,9 +123,12 @@ const EditProfile = () => {
             </button>
           </div>
         </form>
-        
+
+        {/* Display error message */}
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+        {/* Display success message */}
+        {success && <p className="text-green-500 mt-4">Profile updated successfully!</p>}
       </div>
-  
     </div>
   );
 };

@@ -23,7 +23,7 @@ import Deleteaccount from "./Component/Deleteaccount";
 import Hero from './Component/Hero';
 import ProductPage from './Component/ProductPage';
 import CreateAccountPage from "./Component/CreateAccountPage";
-
+import Page from "./Component/Page";
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -202,6 +202,7 @@ const App = () => {
        <Route path="/productPage" element={<ProductPage />} />
        <Route path="/signin" element={<SignInPage />} />
        <Route path="/new-user" element={<CreateAccountPage />} />
+       <Route path="/page" element={<Page/>}/>
       </Routes>
     </Router>
     

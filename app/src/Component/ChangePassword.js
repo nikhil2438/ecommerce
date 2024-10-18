@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../image/logo.png";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
-const CreatePassword = () => {
+const ChangePassword = () => {
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
@@ -62,4 +62,4 @@ const CreatePassword = () => {
   );
 };
 
-export default CreatePassword;
+export default ChangePassword;

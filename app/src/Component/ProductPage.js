@@ -99,15 +99,15 @@ const ProductPage = () => {
           </div>
         </div>
 
-        {/* Product Description */}
+        
         <div className=" col-span-2 md:pl-6 mt-6 md:mt-0">
-          {/* Title */}
+          
           <h2 className="text-2xl font-bold text-gray-800 max-w-3xl  ">
             Casio G-Shock GWG-B1000-3ADR Gray IP Analog-Digital Dial Military
             Green Resin Strap Men's Watch Mud Resistant Tough Solar G1472
           </h2>
 
-          {/* Ratings */}
+          
           <div className="flex items-center mt-2">
             <div className="flex text-yellow-400">
               <svg
@@ -121,7 +121,7 @@ const ProductPage = () => {
             <span className="text-gray-600 text-sm ml-2">(5 ratings)</span>
           </div>
 
-          {/* Price Section */}
+          
           <div className="mt-4 flex items-center space-x-2">
             <span className="text-xl font-bold text-red-500">₹46,396</span>
             <span className="text-gray-400 line-through">₹57,995</span>
@@ -130,21 +130,21 @@ const ProductPage = () => {
             </span>
           </div>
 
-          {/* Festival Offer */}
+          
           <div className="mt-2 bg-yellow-400 text-yellow-800 text-xs font-semibold px-2 py-1 rounded inline-block">
             Great Indian Festival
           </div>
 
-          {/* EMI Information */}
+          
           <div className="mt-2 text-sm text-gray-600">
-            EMI starts at ₹2,249. No Cost EMI available
+            EMI starts at ₹2,249. No Cost EMI available 
           </div>
 
-          {/* Offer Section */}
+          
           <div className="mt-4">
             <h3 className="text-lg font-semibold text-gray-800">Offers</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-              {/* Bank Offer */}
+              
               <div className="border rounded-lg p-4 shadow-md">
                 <h4 className="text-gray-800 font-semibold">Bank Offer</h4>
                 <p className="text-sm text-gray-600">
@@ -155,14 +155,14 @@ const ProductPage = () => {
                 </a>
               </div>
 
-              {/* No Cost EMI */}
+              
               { <div className="border rounded-lg p-4 shadow-md">
                   <h4 className="text-gray-800 font-semibold">No Cost EMI</h4>
                   <p className="text-sm text-gray-600">Upto ₹2,947.70 EMI interest savings on select Credit Cards</p>
                   <a href="#" className="text-blue-600 text-sm mt-2 inline-block">1 offer &gt;</a>
                 </div> }
 
-              {/* Partner Offers */}
+            
               <div className="border rounded-lg p-4 shadow-md">
                 <h4 className="text-gray-800 font-semibold">Partner Offers</h4>
                 <p className="text-sm text-gray-600">
@@ -175,7 +175,7 @@ const ProductPage = () => {
             </div>
           </div>
 
-          {/* SVG Section Below Offers */}
+          
           <div className="mt-4 grid grid-cols-2 md:grid-cols-5 gap-4 max-w-3xl">
             <div className="flex flex-col items-center">
               <img src={rep} alt="10 Days Returnable" className="h-8 w-8" />
@@ -199,7 +199,7 @@ const ProductPage = () => {
             </div>
           </div>
 
-          {/* Product Details Section */}
+          
           <div className="mt-6 bg-gray-100 p-4 rounded-lg max-w-3xl">
             <h3 className="text-2xl font-semibold text-gray-800">
               Product details
@@ -232,9 +232,9 @@ const ProductPage = () => {
 
             <div className="mt-10">
               
-              {/* ... existing content ... */}
+              
 
-              {/* About This Item */}
+              
               <div className="mt-4">
                 <h3 className="text-xl font-semibold text-gray-800">
                   About this item
@@ -252,7 +252,7 @@ const ProductPage = () => {
                 </div>
               </div>
 
-              {/* Additional Information */}
+              
               <div className="mt-4">
                 <h3 className="text-lg font-semibold text-gray-800">
                   Additional Information
@@ -280,7 +280,7 @@ const ProductPage = () => {
             <div className="mt-10">
               <h5 className="text-4xl font-bold mb-4">Styling Ideas</h5>
               <div className="flex items-center">
-                {/* Puma Image on the left */}
+              
                 <div className="mr-4">
                   <img
                     src={Puma}
@@ -327,7 +327,7 @@ const ProductPage = () => {
                       ))}
                   </div>
 
-                  {/* Slider controls */}
+                  
                   <button
                     onClick={handlePrev}
                     className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full mr-5 "
@@ -344,7 +344,7 @@ const ProductPage = () => {
               </div>
             </div>
 
-            {/* Buttons */}
+            
             <div className="absolute  right-0 mt-5 top-24 mr-4 bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-lg w-64 h-30">
               <span className="text-2xl font-bold">₹46,396</span>
               <p className="text-sm text-green-600 mt-2">
@@ -367,7 +367,7 @@ const ProductPage = () => {
                 </div>
               </div>
 
-              {/* Delivery Information */}
+            
               <div className="mt-4 text-sm text-gray-600">
                 <span>FREE delivery by 10 October</span>
                 <span className="block mt-1">Delivering to Delhi 110008</span>
