@@ -13,10 +13,18 @@ const Deleteaccount = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://e-commerce-backend-lc8o.onrender.com/users/deleteUser', {
-        method: 'POST',
+   const token= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTVlMjQwNmU4MGEyOTVmNGQzN2E1YSIsImlhdCI6MTcyOTQ4NzQ0MywiZXhwIjoxNzI5NDk0NjQzfQ.Bd065roKaGmukkcPUDvIofeluPwbEYxyBbtzicY2Qtg"
+  
+
+;
+
+      console.log('Token:', token);
+      const response = await fetch('https://e-commerce-backend-lc8o.onrender.com/users/delete', {
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+          
         },
         body: JSON.stringify({ email }), 
       });
@@ -75,7 +83,7 @@ const Deleteaccount = () => {
             </button>
           </form>
 
-          {/* Display success or error message */}
+          
           {success && <p className="text-green-500 mt-4">Account deleted successfully!</p>}
           {error && <p className="text-red-500 mt-4">{error}</p>}
         </div>

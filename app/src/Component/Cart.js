@@ -41,19 +41,49 @@ const Cart = () => {
     },
   ]);
 
-  // Calculate the subtotal
+  
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const handleAddToCart = async (item) => {
+    try {
+      const response = await fetch('https://e-commerce-backend-lc8o.onrender.com/users/listsproducts', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(item), 
+        "_id": "67121e6ae9a40fc9c109b7b6",
+            "name": "Table Fan",
+            "description": "Table Fan ",
+            "price": 1250,
+            "quantity": 5,
+            "imageUrl": "abcd",
+            "createdAt": "2024-10-18T08:38:02.845Z",
+            "updatedAt": "2024-10-18T08:38:02.845Z",
+            "__v": 0
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add item to cart');
+      }
+
+const result = await response.json();
+console.log('Item added to cart:', result);
+
+} catch (error) {
+console.error('Error adding item to cart:', error);
+}
+};
 
   return (
     <div className="container mx-auto px-4 ">
-      {/* Flexbox layout to align image and checkout section */}
+      
       <div className="flex flex-col lg:flex-row justify-between items-center mb-6">
-        {/* Image section */}
+        
         <div className="w-full lg:w-2/3 mb-6 lg:mb-0">
-          <img src={Nik} alt="nik" className="w-full object-cover mb-10" /> {/* Adjusted for mobile */}
+          <img src={Nik} alt="nik" className="w-full object-cover mb-10" /> 
         </div>
 
-        {/* Checkout section */}
+        
         <div className="w-full lg:w-1/3 bg-gray-100 p-6 rounded-md shadow-md">
           <h3 className="text-xl font-bold">
             Subtotal ({cartItems.length} items): ₹{subtotal.toFixed(2)}
@@ -69,21 +99,21 @@ const Cart = () => {
 
       <h2 className="text-2xl font-bold mb-4">Your Cart Items</h2>
 
-      {/* Display cart items */}
+      
       <ul>
         {cartItems.map((item) => (
           <li
             key={item.id}
             className="flex flex-col lg:flex-row items-center mb-4 border-b border-gray-300 pb-2"
           >
-            {/* Item image */}
+            
             <img
               src={item.image}
               alt={item.name}
               className="w-20 h-20 lg:mr-4 mb-4 lg:mb-0 lg:w-28"
             />
 
-            {/* Item details */}
+        
             <div className="flex-grow text-center lg:text-left">
               <h3 className="font-bold">{item.name}</h3>
               <div>Quantity: {item.quantity}</div>
@@ -99,7 +129,7 @@ const Cart = () => {
             </button>
             </div>
 
-            {/* Remove from cart button */}
+            
             
           </li>
         ))}

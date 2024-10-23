@@ -66,7 +66,7 @@ const ProductPage = () => {
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? stylingIdeasImages.length - 3 : prevIndex - 3
-    );
+    );  
   };
 
   return (

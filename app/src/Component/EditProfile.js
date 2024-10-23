@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+//
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import axios
+
+// Function to get the auth token from cookies
+const getAuthTokenFromCookie = () => {
+  const name = "auth_token=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookies = decodedCookie.split(";");
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i].trim();
+    if (cookie.indexOf(name) === 0) {
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return null; // Token not found
+};
 
 const EditProfile = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    address: '',
+    _id: "",
+    name: "",
+    lastname: "",
+    phone: "",
+    address: "",
+    email: "",
   });
 
   const [error, setError] = useState(null);
@@ -22,34 +39,55 @@ const EditProfile = () => {
     });
   };
 
-  // Updated handleSubmit with POST request
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const token = getAuthTokenFromCookie(); // Get the token from cookies
+    console.log("Token from cookie:", token); // Log the token to check its value
+
+    if (!token) {
+      setError("Authentication token not found. Please log in.");
+      return;
+    }
+
     try {
-      const response = await fetch('https://e-commerce-backend-lc8o.onrender.com/users/UpdateProfile', {
-        method: 'POST', // Changed to POST
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await axios.patch(
+        "https://e-commerce-backend-lc8o.onrender.com/users/updateprofile",
+        {
+          _id: formData._id,
+          name: formData.name,
+          lastname: formData.lastname,
+          phone: formData.phone,
+          address: formData.address,
+          email: formData.email,
         },
-        body: JSON.stringify(formData), // Sending formData as JSON
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      const result = await response.json();
-
-      if (response.ok) {
+      console.log("Response data:", response.data); // Log the response data
+      if (response.status === 200) {
         setSuccess(true);
-        navigate('/profile'); // Navigate to profile after successful update
+        navigate("/profile");
       } else {
-        setError(result.message || 'Update failed. Please check your inputs.');
+        setError(
+          response.data.message || "Update failed. Please check your inputs."
+        );
       }
     } catch (error) {
-      setError('An error occurred while updating the profile. Please try again later.');
+      console.error("Error response:", error.response); // Log the error response
+      setError(
+        error.response?.data?.message ||
+          "An error occurred while updating the profile. Please try again later."
+      );
     }
   };
 
   const handleCancel = () => {
-    navigate('/profile'); 
+    navigate("/profile");
   };
 
   return (
@@ -71,8 +109,8 @@ const EditProfile = () => {
             <label className="font-semibold text-gray-700">Last Name:</label>
             <input
               type="text"
-              name="lastName"
-              value={formData.lastName}
+              name="lastname"
+              value={formData.lastname}
               onChange={handleChange}
               className="w-full p-2 border rounded-lg"
             />
@@ -124,10 +162,10 @@ const EditProfile = () => {
           </div>
         </form>
 
-        {/* Display error message */}
         {error && <p className="text-red-500 mt-4">{error}</p>}
-        {/* Display success message */}
-        {success && <p className="text-green-500 mt-4">Profile updated successfully!</p>}
+        {success && (
+          <p className="text-green-500 mt-4">Profile updated successfully!</p>
+        )}
       </div>
     </div>
   );

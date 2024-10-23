@@ -25,7 +25,7 @@ const CreateAccountPage = () => {
 
     
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
 
         try {
             const response = await fetch('https://e-commerce-backend-lc8o.onrender.com/users/register', {
@@ -171,3 +171,4 @@ const CreateAccountPage = () => {
 };
 
 export default CreateAccountPage;
+ 
