@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../image/logo.png";
+import Logo1 from "../image/Logo1.png";
 import axios from "axios";
 import {
   BrowserRouter as Router,
@@ -43,11 +43,7 @@ const SignInPage = () => {
     <div>
       <Link to="/">
         <div className="flex justify-center mb-4">
-          <img
-            src={logo}
-            alt="Logo"
-            className="h-10 border-gray-800 shadow-lg"
-          />
+          <img src={Logo1} alt="Logo" className="h-10  shadow-lg" />
         </div>
       </Link>
       <div className="flex items-center justify-center bg-white-500">
