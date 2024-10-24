@@ -1,9 +1,7 @@
-//
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Import axios
+import axios from "axios";
 
-// Function to get the auth token from cookies
 const getAuthTokenFromCookie = () => {
   const name = "auth_token=";
   const decodedCookie = decodeURIComponent(document.cookie);
@@ -14,7 +12,7 @@ const getAuthTokenFromCookie = () => {
       return cookie.substring(name.length, cookie.length);
     }
   }
-  return null; // Token not found
+  return null;
 };
 
 const EditProfile = () => {
@@ -42,17 +40,9 @@ const EditProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = getAuthTokenFromCookie(); // Get the token from cookies
-    console.log("Token from cookie:", token); // Log the token to check its value
-
-    if (!token) {
-      setError("Authentication token not found. Please log in.");
-      return;
-    }
-
     try {
       const response = await axios.patch(
-        "https://e-commerce-backend-lc8o.onrender.com/users/updateprofile",
+        `${process.env.REACT_APP_HOST}/users/updateprofile`,
         {
           _id: formData._id,
           name: formData.name,
@@ -60,15 +50,10 @@ const EditProfile = () => {
           phone: formData.phone,
           address: formData.address,
           email: formData.email,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
         }
       );
 
-      console.log("Response data:", response.data); // Log the response data
+      console.log("Response data:", response.data);
       if (response.status === 200) {
         setSuccess(true);
         navigate("/profile");
@@ -78,7 +63,7 @@ const EditProfile = () => {
         );
       }
     } catch (error) {
-      console.error("Error response:", error.response); // Log the error response
+      console.error("Error response:", error.response);
       setError(
         error.response?.data?.message ||
           "An error occurred while updating the profile. Please try again later."

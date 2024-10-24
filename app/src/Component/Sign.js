@@ -17,9 +17,13 @@ const SignInPage = () => {
 
   const handleSignIn = async () => {
     try {
+      console.log(process.env.API_LINK);
       const response = await axios.post(
-        "https://e-commerce-backend-lc8o.onrender.com/users/login",
-        { email, password }
+        "https://ever-deal.onrender.com/users/login",
+        {
+          email,
+          password,
+        }
       );
 
       if (response.data.message === "Loggedin Successfully") {
