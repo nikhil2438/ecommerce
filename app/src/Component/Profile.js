@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "./Footer";
+
 import axios from "axios";
 
 const Profile = () => {
@@ -97,7 +97,6 @@ const Profile = () => {
           </button>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

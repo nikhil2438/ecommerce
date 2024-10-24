@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 const ProductPage = () => {
   return (
@@ -9,9 +8,21 @@ const ProductPage = () => {
         {/* Navigation Links */}
         <nav>
           <ul className="flex space-x-4">
-            <li><a href="#" className="text-blue-500">Home</a></li>
-            <li><a href="#" className="text-blue-500">Deals</a></li>
-            <li><a href="#" className="text-blue-500">Cart</a></li>
+            <li>
+              <a href="#" className="text-blue-500">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-blue-500">
+                Deals
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-blue-500">
+                Cart
+              </a>
+            </li>
           </ul>
         </nav>
       </header>
@@ -28,31 +39,48 @@ const ProductPage = () => {
             />
           </div>
           <div className="grid grid-cols-3 gap-2">
-            <img src="https://via.placeholder.com/50" alt="Image 1" className="w-full rounded-lg" />
-            <img src="https://via.placeholder.com/50" alt="Image 2" className="w-full rounded-lg" />
-            <img src="https://via.placeholder.com/50" alt="Image 3" className="w-full rounded-lg" />
+            <img
+              src="https://via.placeholder.com/50"
+              alt="Image 1"
+              className="w-full rounded-lg"
+            />
+            <img
+              src="https://via.placeholder.com/50"
+              alt="Image 2"
+              className="w-full rounded-lg"
+            />
+            <img
+              src="https://via.placeholder.com/50"
+              alt="Image 3"
+              className="w-full rounded-lg"
+            />
           </div>
         </div>
 
         {/* Right Section: Product Info */}
         <div>
           <h2 className="text-2xl font-bold">Noise Pulse 4 Max</h2>
-          <p className="text-sm text-gray-500">India's 1st Ever AI Smart Watch</p>
+          <p className="text-sm text-gray-500">
+            India's 1st Ever AI Smart Watch
+          </p>
 
           <div className="flex items-center space-x-2 my-4">
             <span className="text-yellow-500 text-lg">4.1 ★</span>
             <span className="text-sm text-gray-500">40,711 ratings</span>
           </div>
 
-          <div className="text-lg font-semibold text-red-500">
-            -69% ₹2,199
-          </div>
+          <div className="text-lg font-semibold text-red-500">-69% ₹2,199</div>
           <p className="text-gray-500 line-through">M.R.P: ₹6,999</p>
 
           <div className="my-4">
             <span className="text-green-500">In Stock</span>
-            <p>Ships from: <span className="font-bold">Amazon</span></p>
-            <p>Sold by: <span className="font-bold">Clicktech Retail Pvt Ltd</span></p>
+            <p>
+              Ships from: <span className="font-bold">Amazon</span>
+            </p>
+            <p>
+              Sold by:{" "}
+              <span className="font-bold">Clicktech Retail Pvt Ltd</span>
+            </p>
           </div>
 
           {/* Buttons */}
@@ -77,11 +105,11 @@ const ProductPage = () => {
       </main>
 
       {/* Footer */}
-      <footer className="mt-8 border-t py-4">
+      {/* <footer className="mt-8 border-t py-4">
         <p className="text-sm text-gray-500 text-center">
           © 2024 Amazon Clone. All rights reserved.
         </p>
-      </footer>
+      </footer> */}
     </div>
   );
 };
