@@ -1,17 +1,8 @@
-import React from 'react';
-import logo from '../image/logo.png';
-import Footer from './Footer';
+import React from "react";
+import logo from "../image/logo.png";
+
 const About = () => {
-  return(
-<> 
-about us
-    <Footer />
-    </>
-  );
-  
+  return <>about us</>;
 };
 
-
-
-
-export default About ;
+export default About;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Component/Home";
 import Contact from "./Component/Contact";
@@ -7,6 +7,7 @@ import About from "./Component/About";
 import YourProduct from "./Component/YourProduct";
 import Helloguest from "./Component/Helloguest";
 import Navbar from "./Component/Navbar";
+import Footer from "./Component/Footer";
 
 import Returnorder from "./Component/Returnorder";
 import Cart from "./Component/Cart";
@@ -51,6 +52,8 @@ const App = () => {
         <Route path="/new-user" element={<CreateAccountPage />} />
         <Route path="/page" element={<Page />} />
       </Routes>
+
+      <Footer />
     </>
   );
 };
