@@ -13,9 +13,11 @@ const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSignIn = async () => {
+    setLoading(true);
     try {
       console.log(process.env.API_LINK);
       const response = await axios.post(
@@ -36,6 +38,8 @@ const SignInPage = () => {
       }
     } catch (error) {
       setError("An error occurred while logging in. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
