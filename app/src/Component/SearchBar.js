@@ -18,7 +18,14 @@ const SearchBar = () => {
         value={query}
         onFocus={handleSearch}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            // Trigger search on Enter key
+            handleSearch();
+          }
+        }}
       />
+
       <button
         className="bg-yellow-500 text-white rounded-r-md py-1  px-3 hover:bg-yellow-600 "
         onClick={handleSearch}
