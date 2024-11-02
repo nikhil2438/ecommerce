@@ -19,7 +19,6 @@ const SignInPage = () => {
   const handleSignIn = async () => {
     setLoading(true);
     try {
-      console.log(process.env.API_LINK);
       const response = await axios.post(
         "https://ever-deal.onrender.com/users/login",
         {
@@ -47,7 +46,7 @@ const SignInPage = () => {
     <div>
       <Link to="/">
         <div className="flex justify-center mb-4">
-          <img src={Logo1} alt="Logo" className="h-10  shadow-lg" />
+          <img src={Logo1} alt="Logo" className="h-10 shadow-lg" />
         </div>
       </Link>
       <div className="flex items-center justify-center bg-white-500">
@@ -95,14 +94,12 @@ const SignInPage = () => {
             </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
             <div className="flex justify-between mb-6">
-              <a
-                href="https://deluxe-faloodeh-7c13f7.netlify.app"
-                className="text-black-600 text-sm hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
+              <span
+                onClick={() => navigate("/changepassword")}
+                className="text-black-600 text-sm hover:underline cursor-pointer"
               >
                 Forgot Password?
-              </a>
+              </span>
             </div>
             <div className="text-center mt-4">
               <button
