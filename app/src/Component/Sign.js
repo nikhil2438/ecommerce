@@ -95,7 +95,12 @@ const SignInPage = () => {
             </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
             <div className="flex justify-between mb-6">
-              <a href="#" className="text-black-600 text-sm hover:underline">
+              <a
+                href="https://deluxe-faloodeh-7c13f7.netlify.app"
+                className="text-black-600 text-sm hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Forgot Password?
               </a>
             </div>
