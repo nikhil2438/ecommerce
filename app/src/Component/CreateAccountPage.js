@@ -58,9 +58,9 @@ const CreateAccountPage = () => {
   };
 
   return (
-    <div>
+    <div className="mt-32">
       <Link to="/">
-        <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-4 mt-4">
           <img src={Logo1} alt="Logo" className="h-10 shadow-lg" />
         </div>
       </Link>

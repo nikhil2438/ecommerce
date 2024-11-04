@@ -1,6 +1,5 @@
-
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const AccountMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,21 +17,25 @@ const AccountMenu = () => {
     // Perform sign-out logic here (e.g., clear tokens or session)
     localStorage.clear(); // Example: Clearing local storage or tokens
 
-    navigate('/');
+    navigate("/");
   };
 
   return (
-    <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <Link to="/Helloguest">
-        <span className="text-white cursor-pointer">Hello Guest</span>
-
+        <span className="text-white cursor-pointer">Hello Guest Sign In</span>
       </Link>
-      <p className="text-white cursor-pointer">Sign In</p>
 
       {isOpen && (
         <div className="absolute top-full right-0 bg-slate-800 text-white p-5 shadow-lg w-80 z-20 md:h-96 mt-4">
           <ul>
-            <li className="hover:bg-gray-700 p-2 cursor-pointer text-xl">Your Account</li>
+            <li className="hover:bg-gray-700 p-2 cursor-pointer text-xl">
+              Your Account
+            </li>
             <li className="hover:bg-gray-700 p-2 cursor-pointer">
               <Link to="/profile">Profile</Link>
             </li>
@@ -48,8 +51,11 @@ const AccountMenu = () => {
             <li className="hover:bg-gray-700 p-2 cursor-pointer">
               <Link to="/deleteaccount">Delete Your Account</Link>
             </li>
-            
-            <li className="hover:bg-gray-700 p-2 cursor-pointer" onClick={handleSignOut}>
+
+            <li
+              className="hover:bg-gray-700 p-2 cursor-pointer"
+              onClick={handleSignOut}
+            >
               Sign Out
             </li>
           </ul>

@@ -1,10 +1,15 @@
-
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import logo from "../image/logo.png";
 
 const Deleteaccount = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
@@ -13,34 +18,38 @@ const Deleteaccount = () => {
     e.preventDefault();
 
     try {
-   const token= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTVlMjQwNmU4MGEyOTVmNGQzN2E1YSIsImlhdCI6MTcyOTQ4NzQ0MywiZXhwIjoxNzI5NDk0NjQzfQ.Bd065roKaGmukkcPUDvIofeluPwbEYxyBbtzicY2Qtg"
-  
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTVlMjQwNmU4MGEyOTVmNGQzN2E1YSIsImlhdCI6MTcyOTQ4NzQ0MywiZXhwIjoxNzI5NDk0NjQzfQ.Bd065roKaGmukkcPUDvIofeluPwbEYxyBbtzicY2Qtg";
 
-;
-
-      console.log('Token:', token);
-      const response = await fetch('https://e-commerce-backend-lc8o.onrender.com/users/delete', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-          
-        },
-        body: JSON.stringify({ email }), 
-      });
+      console.log("Token:", token);
+      const response = await fetch(
+        "https://e-commerce-backend-lc8o.onrender.com/users/delete",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
 
       const result = await response.json();
 
       if (response.ok) {
         setSuccess(true);
-        console.log('Account deleted successfully');
-        
-        navigate('/'); 
+        console.log("Account deleted successfully");
+
+        navigate("/");
       } else {
-        setError(result.message || 'Failed to delete account. Please try again.');
+        setError(
+          result.message || "Failed to delete account. Please try again."
+        );
       }
     } catch (error) {
-      setError('An error occurred while deleting your account. Please try again later.');
+      setError(
+        "An error occurred while deleting your account. Please try again later."
+      );
     }
   };
 
@@ -61,7 +70,10 @@ const Deleteaccount = () => {
           <h2 className="text-2xl font-semibold mb-6">Delete Your Account</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email
               </label>
               <input
@@ -83,8 +95,9 @@ const Deleteaccount = () => {
             </button>
           </form>
 
-          
-          {success && <p className="text-green-500 mt-4">Account deleted successfully!</p>}
+          {success && (
+            <p className="text-green-500 mt-4">Account deleted successfully!</p>
+          )}
           {error && <p className="text-red-500 mt-4">{error}</p>}
         </div>
       </div>
