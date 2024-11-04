@@ -1,7 +1,4 @@
-
-
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const HoverMenu = () => {
   // State to track whether the menu is hovered
@@ -9,14 +6,14 @@ const HoverMenu = () => {
 
   useEffect(() => {
     if (isHovered) {
-      document.body.style.overflow = 'hidden';  
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';    
+      document.body.style.overflow = "auto";
     }
 
     // Cleanup on component unmount
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     };
   }, [isHovered]);
 

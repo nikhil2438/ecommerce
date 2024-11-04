@@ -26,8 +26,10 @@ const SignInPage = () => {
           password,
         }
       );
+      console.log(response.data.data);
 
       if (response.data.message === "Loggedin Successfully") {
+        localStorage.setItem("userId", response.data.data);
         navigate("/");
       } else {
         setError(
@@ -43,10 +45,10 @@ const SignInPage = () => {
   };
 
   return (
-    <div>
+    <div className="mt-32">
       <Link to="/">
-        <div className="flex justify-center mb-4">
-          <img src={Logo1} alt="Logo" className="h-10 shadow-lg" />
+        <div className="flex justify-center mb-4 mt-4">
+          <img src={Logo1} alt="Logo" className="h-8 shadow-lg" />
         </div>
       </Link>
       <div className="flex items-center justify-center bg-white-500">
