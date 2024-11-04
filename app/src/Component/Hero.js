@@ -61,7 +61,7 @@ const Hero = () => {
           <p className="text-blue-800 text-xl font-medium  ">₹3386</p>
           <img src={Black} alt="Banner" className="w-48 object-cover mx-auto" />
           <div class="flex justify-center mt-5">
-            <button class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg">
+            <button class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg  onClick ">
               Add To Cart
             </button>
           </div>

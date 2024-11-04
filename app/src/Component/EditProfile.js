@@ -1,19 +1,33 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-
-
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+const getAuthTokenFromCookie = () => {
+  const name = "auth_token=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookies = decodedCookie.split(";");
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i].trim();
+    if (cookie.indexOf(name) === 0) {
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return null;
+};
 
 const EditProfile = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    address: '',
+    _id: "",
+    name: "",
+    lastname: "",
+    phone: "",
+    address: "",
+    email: "",
   });
+
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,13 +37,42 @@ const EditProfile = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    try {
+      const response = await axios.patch(
+        `${process.env.REACT_APP_HOST}/users/updateprofile`,
+        {
+          _id: formData._id,
+          name: formData.name,
+          lastname: formData.lastname,
+          phone: formData.phone,
+          address: formData.address,
+          email: formData.email,
+        }
+      );
+
+      console.log("Response data:", response.data);
+      if (response.status === 200) {
+        setSuccess(true);
+        navigate("/profile");
+      } else {
+        setError(
+          response.data.message || "Update failed. Please check your inputs."
+        );
+      }
+    } catch (error) {
+      console.error("Error response:", error.response);
+      setError(
+        error.response?.data?.message ||
+          "An error occurred while updating the profile. Please try again later."
+      );
+    }
   };
 
   const handleCancel = () => {
-    navigate('/profile'); 
+    navigate("/profile");
   };
 
   return (
@@ -51,8 +94,8 @@ const EditProfile = () => {
             <label className="font-semibold text-gray-700">Last Name:</label>
             <input
               type="text"
-              name="lastName"
-              value={formData.lastName}
+              name="lastname"
+              value={formData.lastname}
               onChange={handleChange}
               className="w-full p-2 border rounded-lg"
             />
@@ -103,9 +146,12 @@ const EditProfile = () => {
             </button>
           </div>
         </form>
-        
+
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+        {success && (
+          <p className="text-green-500 mt-4">Profile updated successfully!</p>
+        )}
       </div>
-  
     </div>
   );
 };

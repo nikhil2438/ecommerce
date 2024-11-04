@@ -30,7 +30,7 @@ const Gettouch = () => {
           </p>
 
           <button class=" px-4 py-2 hover:bg-yellow-300 bg-slate-900 rounded-full text-white	 ">
-            Starting chating
+            Starting chating 
           </button>
         </div>
         <div class="border border-slate-400 p-3  shadow-lg">

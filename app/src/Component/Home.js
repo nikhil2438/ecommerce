@@ -1,7 +1,7 @@
 // import React from 'react';
-import Slider from './Slider';
-import Hero from './Hero';
-import Footer from './Footer';
+import Slider from "./Slider";
+import Hero from "./Hero";
+
 import { useLocation } from "react-router-dom";
 
 const Home = () => {
@@ -21,17 +21,16 @@ const Home = () => {
     <div>
       <Slider />
       <Hero />
-      
+
       {/* Back to top button */}
       <div
         className="bg-slate-500 p-4 text-center mt-5 cursor-pointer mb-0" // added mb-0
-        onClick={scrollTOTOP} 
+        onClick={scrollTOTOP}
       >
         Back to top
       </div>
 
       {/* Footer without margin to ensure no gap */}
-      <Footer />
     </div>
   );
 };
