@@ -13,9 +13,11 @@ const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSignIn = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(
         "https://ever-deal.onrender.com/users/login",
@@ -37,6 +39,8 @@ const SignInPage = () => {
       }
     } catch (error) {
       setError("An error occurred while logging in. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -92,9 +96,12 @@ const SignInPage = () => {
             </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
             <div className="flex justify-between mb-6">
-              <a href="#" className="text-black-600 text-sm hover:underline">
+              <span
+                onClick={() => navigate("/changepassword")}
+                className="text-black-600 text-sm hover:underline cursor-pointer"
+              >
                 Forgot Password?
-              </a>
+              </span>
             </div>
             <div className="text-center mt-4">
               <button

@@ -3,14 +3,22 @@ import { Link, useNavigate } from "react-router-dom";
 
 const AccountMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
 
-  const handleMouseEnter = () => {
-    setIsOpen(true);
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
 
-  const handleMouseLeave = () => {
-    setIsOpen(false);
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Check on component mount
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
   const handleSignOut = () => {

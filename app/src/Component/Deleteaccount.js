@@ -34,9 +34,7 @@ const Deleteaccount = () => {
         }
       );
 
-      const result = await response.json();
-
-      if (response.ok) {
+      if (response.status === 200) {
         setSuccess(true);
         console.log("Account deleted successfully");
 
@@ -60,7 +58,7 @@ const Deleteaccount = () => {
           <img
             src={logo}
             alt="Logo"
-            className="h-10 border-gray-800 shadow-lg bg-black "
+            className="h-10 border-gray-800 shadow-lg bg-black"
           />{" "}
         </div>
       </Link>

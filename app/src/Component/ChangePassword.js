@@ -12,9 +12,10 @@ const ChangePassword = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.API_LINK}/users/request-password-change`,
-        { email }
+        "https://ever-deal.onrender.com/users/request-password-change",
+        email
       );
+      console.log(response);
 
       if (response.status === 200) {
         setMessage("Check your email for a password reset link.");
@@ -23,7 +24,6 @@ const ChangePassword = () => {
       }
     } catch (error) {
       console.error("Failed to send reset email:", error);
-
       setMessage("Failed to send reset email. Please try again.");
     }
   };
