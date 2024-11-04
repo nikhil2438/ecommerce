@@ -17,7 +17,6 @@ const SignInPage = () => {
 
   const handleSignIn = async () => {
     try {
-      console.log(process.env.API_LINK);
       const response = await axios.post(
         "https://ever-deal.onrender.com/users/login",
         {
@@ -25,8 +24,10 @@ const SignInPage = () => {
           password,
         }
       );
+      console.log(response.data.data);
 
       if (response.data.message === "Loggedin Successfully") {
+        localStorage.setItem("userId", response.data.data);
         navigate("/");
       } else {
         setError(
