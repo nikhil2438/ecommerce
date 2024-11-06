@@ -6,6 +6,7 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
+import axios from "axios";
 import logo from "../image/logo.png";
 
 const Deleteaccount = () => {
@@ -18,23 +19,13 @@ const Deleteaccount = () => {
     e.preventDefault();
 
     try {
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTVlMjQwNmU4MGEyOTVmNGQzN2E1YSIsImlhdCI6MTcyOTQ4NzQ0MywiZXhwIjoxNzI5NDk0NjQzfQ.Bd065roKaGmukkcPUDvIofeluPwbEYxyBbtzicY2Qtg";
-
-      console.log("Token:", token);
-      const response = await fetch(
-        "https://e-commerce-backend-lc8o.onrender.com/users/delete",
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ email }),
-        }
+      const response = await axios.delete(
+        "https://ever-deal.onrender.com/users/delete"
       );
 
-      if (response.status === 200) {
+      const result = await response.json();
+
+      if (response.ok) {
         setSuccess(true);
         console.log("Account deleted successfully");
 
@@ -58,7 +49,7 @@ const Deleteaccount = () => {
           <img
             src={logo}
             alt="Logo"
-            className="h-10 border-gray-800 shadow-lg bg-black"
+            className="h-10 border-gray-800 shadow-lg bg-black "
           />{" "}
         </div>
       </Link>

@@ -8,7 +8,6 @@ import YourProduct from "./Component/YourProduct";
 import Helloguest from "./Component/Helloguest";
 import Navbar from "./Component/Navbar";
 import Footer from "./Component/Footer";
-
 import Returnorder from "./Component/Returnorder";
 import Cart from "./Component/Cart";
 import AccountMenu from "./Component/AccountMenu";
@@ -23,6 +22,7 @@ import Hero from "./Component/Hero";
 import ProductPage from "./Component/ProductPage";
 import CreateAccountPage from "./Component/CreateAccountPage";
 import Page from "./Component/Page";
+import UpdatePassword from "./Component/UpdatePassword";
 
 const App = () => {
   return (
@@ -38,7 +38,6 @@ const App = () => {
         <Route path="/YourProduct" element={<YourProduct />} />
         <Route path="/Returnorder" element={<Returnorder />} />
         <Route path="/Cart" element={<Cart />} />
-
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/wishlist" element={<Wishlist />} />
@@ -46,13 +45,13 @@ const App = () => {
         <Route path="/accountmenu" element={<AccountMenu />} />
         <Route path="/changepassword" element={<ChangePassword />} />
         <Route path="/deleteaccount" element={<Deleteaccount />} />
+        <Route path="/reset-password" element={<UpdatePassword />} />
         <Route path="/" element={<Hero />} />
         <Route path="/productPage" element={<ProductPage />} />
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/new-user" element={<CreateAccountPage />} />
         <Route path="/page" element={<Page />} />
       </Routes>
-
       <Footer />
     </>
   );

@@ -15,9 +15,10 @@ const ChangePassword = () => {
         "https://ever-deal.onrender.com/users/request-password-change",
         email
       );
-      console.log(response);
+      console.log(response.data);
 
       if (response.status === 200) {
+        localStorage.setItem("Token", response.data.data);
         setMessage("Check your email for a password reset link.");
       } else {
         setMessage(`Error: ${response.data.message}`);

@@ -18,12 +18,20 @@ const SignInPage = () => {
 
   const handleSignIn = async () => {
     setLoading(true);
+
     try {
+      console.log(email, password);
+
       const response = await axios.post(
         "https://ever-deal.onrender.com/users/login",
         {
           email,
           password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
       console.log(response.data.data);

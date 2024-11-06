@@ -11,7 +11,7 @@ const Slider = () => {
     "https://sndeal.netlify.app/static/media/image.ffb30fae7abe9abeb837.png",
   ];
   useEffect(() => {
-    const intervalId = setInterval(nextItem, 1000);
+    const intervalId = setInterval(nextItem, 3000);
 
     return () => clearInterval(intervalId);
   }, []);

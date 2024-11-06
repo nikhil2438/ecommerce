@@ -11,6 +11,8 @@ const CreateAccountPage = () => {
     email: "",
     password: "",
   });
+
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -44,10 +46,11 @@ const CreateAccountPage = () => {
       );
 
       const data = await response.json();
-
       if (response.ok) {
-        alert("Account created successfully!");
-        navigate("/signin");
+        setSuccessMessage("Account created successfully!");
+        setTimeout(() => {
+          navigate("/signin");
+        }, 2000);
       } else {
         alert(data.message || "Failed to create account");
       }
@@ -69,6 +72,7 @@ const CreateAccountPage = () => {
           <h2 className="text-2xl font-semibold text-center mb-6">
             Create New Account
           </h2>
+
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
@@ -179,6 +183,11 @@ const CreateAccountPage = () => {
               >
                 Create Account
               </button>
+              {successMessage && (
+                <p className="text-green-600 text-center mb-4">
+                  {successMessage}
+                </p>
+              )}
             </div>
           </form>
         </div>
