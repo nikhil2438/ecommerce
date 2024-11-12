@@ -16,7 +16,7 @@ function Navbar() {
     <nav>
       <ul>
         <div className="flex items-center justify-between pr-6 sm:justify-normal sm:pr-0 align-middle bg-slate-800 text-white  px-3 py-6  ">
-          {/* Logo */}
+          
           <div className="flex items-center   ">
             <img
               src={logo}

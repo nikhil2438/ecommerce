@@ -15,7 +15,6 @@ const Newpassword = () => {
       return;
     }
 
-    // Handle form submission here (e.g., sending new password to backend)
     console.log("Password submitted: ", password);
   };
 
