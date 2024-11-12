@@ -1,46 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const AccountMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+  const handleMouseEnter = () => {
+    setIsOpen(true);
+  };
 
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Check on component mount
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const handleMouseLeave = () => {
+    setIsOpen(false);
   };
 
   const handleSignOut = () => {
-    localStorage.clear();
+    // Perform sign-out logic here (e.g., clear tokens or session)
+    localStorage.clear(); // Example: Clearing local storage or tokens
+
     navigate("/");
   };
 
   return (
     <div
       className="relative"
-      onMouseEnter={!isMobile ? () => setIsOpen(true) : null}
-      onMouseLeave={!isMobile ? () => setIsOpen(false) : null}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      <Link to="/Helloguest" onClick={isMobile ? toggleMenu : null}>
-        <span className="text-white cursor-pointer">Hello Guest</span>
+      <Link to="/Helloguest">
+        <span className="text-white cursor-pointer">Hello Guest Sign In</span>
       </Link>
-      <p
-        className="text-white cursor-pointer"
-        onClick={isMobile ? toggleMenu : null}
-      >
-        Sign In
-      </p>
 
       {isOpen && (
         <div className="absolute top-full right-0 bg-slate-800 text-white p-5 shadow-lg w-80 z-20 md:h-96 mt-4">
@@ -63,6 +51,7 @@ const AccountMenu = () => {
             <li className="hover:bg-gray-700 p-2 cursor-pointer">
               <Link to="/deleteaccount">Delete Your Account</Link>
             </li>
+
             <li
               className="hover:bg-gray-700 p-2 cursor-pointer"
               onClick={handleSignOut}

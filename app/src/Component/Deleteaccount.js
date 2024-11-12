@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import axios from "axios";
 import logo from "../image/logo.png";
 
@@ -14,24 +20,24 @@ const Deleteaccount = () => {
 
     try {
       const response = await axios.delete(
-        "https://ever-deal.onrender.com/users/delete",
-        email
+        "https://ever-deal.onrender.com/users/delete"
       );
 
-      if (response.status === 200) {
+      const result = await response.json();
+
+      if (response.ok) {
         setSuccess(true);
         console.log("Account deleted successfully");
+
         navigate("/");
       } else {
         setError(
-          response.data.message || "Failed to delete account. Please try again."
+          result.message || "Failed to delete account. Please try again."
         );
       }
     } catch (error) {
-      console.log(error);
       setError(
-        error.response?.data?.message ||
-          "An error occurred while deleting your account. Please try again later."
+        "An error occurred while deleting your account. Please try again later."
       );
     }
   };
@@ -43,7 +49,7 @@ const Deleteaccount = () => {
           <img
             src={logo}
             alt="Logo"
-            className="h-10 border-gray-800 shadow-lg bg-black"
+            className="h-10 border-gray-800 shadow-lg bg-black "
           />{" "}
         </div>
       </Link>
@@ -52,8 +58,24 @@ const Deleteaccount = () => {
         <div className="bg-white p-5 rounded-lg shadow-lg border-2 border-slate-500 w-90 flex flex-col h-fit">
           <h2 className="text-2xl font-semibold mb-6">Delete Your Account</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <p>You will be deleting your account as well as account data.</p>
-
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border-2 border-black rounded-sm shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-black sm:text-sm"
+                placeholder="Enter your email"
+                required
+              />
+              <p>You will be deleting your account as well as account data.</p>
+            </div>
             <button
               type="submit"
               className="w-full bg-slate-700 text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition duration-200"

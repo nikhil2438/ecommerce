@@ -14,11 +14,11 @@ const Profile = () => {
   });
   const [error, setError] = useState(null);
 
-  const fetchData = async () => {
+  const fetchData = async (userId) => {
     try {
-      console.log(process.env);
+      // console.log(userId);
       let response = await axios.get(
-        process.env.REACT_APP_HOST + "/users/profile/6718d237dad58ff32149db93"
+        `https://ever-deal.onrender.com/users/profile/${userId}`
       );
 
       const userProfile = response.data.data;
@@ -36,8 +36,12 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    fetchData();
-    console.log(process.env.REACT_APP_HOST);
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      navigate("/Helloguest");
+    } else {
+      fetchData(userId);
+    }
   }, []);
 
   const handleEditClick = () => {
@@ -45,7 +49,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-gray-100">
+    <div className="min-h-screen flex flex-col justify-between mt-20 bg-gray-100">
       <div className="flex justify-center items-center py-30">
         <div className="bg-white p-8 rounded-lg shadow-lg w-[70%] mt-12">
           <h1 className="text-3xl font-bold mb-6 text-gray-800">
@@ -58,7 +62,7 @@ const Profile = () => {
               <div className="mb-4">
                 <label className="font-semibold text-gray-700">Name:</label>
                 <p className="text-gray-600">
-                  {profileData.name || "Loading..."}
+                  {profileData.name || "FirtName"}
                 </p>
               </div>
               <div className="mb-4">
@@ -66,25 +70,21 @@ const Profile = () => {
                   Last Name:
                 </label>
                 <p className="text-gray-600">
-                  {profileData.lastName || "Loading..."}
+                  {profileData.lastName || "LastName"}
                 </p>
               </div>
               <div className="mb-4">
                 <label className="font-semibold text-gray-700">Phone:</label>
-                <p className="text-gray-600">
-                  {profileData.phone || "Loading..."}
-                </p>
+                <p className="text-gray-600">{profileData.phone || "Phone"}</p>
               </div>
               <div className="mb-4">
                 <label className="font-semibold text-gray-700">Email:</label>
-                <p className="text-gray-600">
-                  {profileData.email || "Loading..."}
-                </p>
+                <p className="text-gray-600">{profileData.email || "Email"}</p>
               </div>
               <div className="mb-4">
                 <label className="font-semibold text-gray-700">Address:</label>
                 <p className="text-gray-600">
-                  {profileData.address || "Loading..."}
+                  {profileData.address || "Address"}
                 </p>
               </div>
             </>
