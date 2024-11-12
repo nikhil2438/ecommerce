@@ -69,7 +69,9 @@ const Hero = () => {
               {product.description}
             </h4>
             <StarRating rating={4} />
-            <p className="text-blue-800 text-lg font-medium">₹{product.price}</p>
+            <p className="text-blue-800 text-lg font-medium">
+              ₹{product.price}
+            </p>
             <img
               src={product.imageUrl || "placeholder.jpg"}
               alt={product.name}
