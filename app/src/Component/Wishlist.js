@@ -1,90 +1,108 @@
-// 
-
-import React, { useState } from 'react';
-import Nik from '../image/Nik.jpg';
-import P from '../image/P.jpg';
-import P2 from '../image/P2.jpg';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Wishlist = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Helix by Timex Analog Silver Dial Men\'s Watch',
-      image: Nik,
-      price: 1995,
-      quantity: 1,
-      rating: 4.5,
-    },
-    {
-      id: 2,
-      name: 'TIMEX Unisex Stainless Steel Analog Watch',
-      image: P,
-      price: 2995,
-      quantity: 1,
-      rating: 4.8,
-    },
-    {
-      id: 3,
-      name: 'TIMEX Men Beige Round Analog Watch',
-      image: P2,
-      price: 5250,
-      quantity: 1,
-      rating: 4.7,
-    },
-  ]);
+  const [wishlistItems, setWishlistItems] = useState([]);
+  const [error, setError] = useState(null);
+  const [deleting, setDeleting] = useState({});
 
-  // Calculate subtotal
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  useEffect(() => {
+    const fetchWishlistItems = async () => {
+      try {
+        const response = await axios.get(
+          "https://ever-deal.onrender.com/users/wishlist",
+          {
+            headers: {
+              Authorization: "Bearer <your-auth-token>", 
+            },
+          }
+        );
+        if (response.data && response.data.data) {
+          setWishlistItems(response.data.data);
+        } else {
+          setError("No wishlist items found.");
+        }
+      } catch (error) {
+        console.error("Error fetching wishlist items:", error);
+        setError("Failed to fetch wishlist items. Please try again later.");
+      }
+    };
 
-  // Add to Wishlist API call
-  const addToWishlist = async (item) => {
+    fetchWishlistItems();
+  }, []);
+
+  const subtotal = wishlistItems.reduce(
+    (acc, item) => acc + item.productId.price * item.productId.quantity,
+    0
+  );
+
+  const addToCart = async (item) => {
     try {
-      const response = await fetch('https://e-commerce-backend-lc8o.onrender.com/users/addtowishlist', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer <your-auth-token>', 
+      const response = await axios.post(
+        "https://ever-deal.onrender.com/users/addtocart",
+        {
+          productId: item.productId._id,
+          quantity: item.productId.quantity,
         },
-        body: JSON.stringify({
-          itemId: item.id, // Adjust the payload structure based on your API docs
-          name: item.name,
-          price: item.price,
-          quantity: item.quantity,
-        }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        console.log('Item added to wishlist:', data);
-        alert('Item added to wishlist!');
-      } else {
-        console.error('Error adding item to wishlist:', data.message);
-        alert('Failed to add item to wishlist.');
+        {
+          headers: {
+            Authorization: "Bearer <your-auth-token>", 
+          },
+        }
+      );
+      if (response.status === 200) {
+        alert("Item added to cart!");
       }
     } catch (error) {
-      console.error('Error occurred while adding to wishlist:', error);
-      alert('Something went wrong. Please try again later.');
+      console.error("Error adding item to cart:", error);
+      alert("Failed to add item to cart.");
     }
   };
 
-  // Remove item from the cart
-  const removeFromCart = (item) => {
-    setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
+  const removeFromWishlist = async (item) => {
+    const itemId = item.productId._id;
+    setDeleting((prev) => ({ ...prev, [itemId]: true }));
+    try {
+      const response = await axios.delete(
+        `https://ever-deal.onrender.com/users/removefromwishlist/${itemId}`,
+        {
+          headers: {
+            Authorization: "Bearer <your-auth-token>", 
+          },
+        }
+      );
+      if (response.status === 200) {
+        setWishlistItems(
+          wishlistItems.filter((i) => i.productId._id !== itemId)
+        );
+        alert("Item removed from wishlist!");
+      } else {
+        alert("Failed to remove item from wishlist.");
+      }
+    } catch (error) {
+      console.error("Error removing item from wishlist:", error);
+      setError("Failed to remove item from wishlist. Please try again.");
+    } finally {
+      setDeleting((prev) => ({ ...prev, [itemId]: false }));
+    }
   };
+
+  if (error) return <div className="text-center text-red-500">{error}</div>;
 
   return (
     <div className="container mx-auto">
-      {/* Flexbox layout to align image and checkout section */}
       <div className="flex flex-col lg:flex-row justify-between items-center mb-6">
-        {/* Image section */}
         <div className="w-full lg:w-2/3 mb-6 lg:mb-0">
-          <img src={Nik} alt="nik" className="w-full mb-10" /> 
+          <img
+            src="https://example.com/your-image.jpg"
+            alt="example"
+            className="w-full mb-10"
+          />
         </div>
 
-        {/* Checkout section */}
         <div className="w-full lg:w-1/3 bg-gray-100 p-6 rounded-md shadow-md">
           <h3 className="text-xl font-bold">
-            Subtotal ({cartItems.length} items): ₹{subtotal.toFixed(2)}
+            Subtotal ({wishlistItems.length} items): ₹{subtotal.toFixed(2)}
           </h3>
 
           <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 mt-4 rounded-md w-full">
@@ -93,39 +111,41 @@ const Wishlist = () => {
         </div>
       </div>
 
-      <h2 className="text-2xl font-bold mb-4">Your Cart Items</h2>
+      <h2 className="text-2xl font-bold mb-4">Your Wishlist Items</h2>
 
-      {/* Display cart items */}
       <ul>
-        {cartItems.map((item) => (
+        {wishlistItems.map((item) => (
           <li
-            key={item.id}
+            key={item.productId._id}
             className="flex flex-col lg:flex-row items-center mb-4 border-b border-gray-300 pb-2"
           >
-            {/* Item image */}
-            <img src={item.image} alt={item.name} className="w-20 h-20 lg:mr-4 mb-4 lg:mb-0" />
+            <img
+              src={item.productId.imageUrl}
+              alt={item.productId.name}
+              className="w-20 h-20 lg:mr-4 mb-4 lg:mb-0"
+            />
 
-            {/* Item details */}
             <div className="flex-grow text-center lg:text-left">
-              <h3 className="font-bold">{item.name}</h3>
-              <div>Quantity: {item.quantity}</div>
-              <div>Price: ₹{item.price.toFixed(2)}</div>
-              <div>Rating: {item.rating} ⭐</div>
+              <h3 className="font-bold">{item.productId.name}</h3>
+              <div>Quantity: {item.productId.quantity}</div>
+              <div>Price: ₹{item.productId.price.toFixed(2)}</div>
+              <div>Rating: {item.productId.rating} ⭐</div>
 
-              {/* Add to Wishlist button */}
               <button
                 className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md mt-4 lg:mt-0"
-                onClick={() => addToWishlist(item)}
+                onClick={() => addToCart(item)}
               >
-                Add to Wishlist
+                Add to Cart
               </button>
 
-              {/* Remove from Cart button */}
               <button
                 className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md mt-4 lg:mt-0"
-                onClick={() => removeFromCart(item)}
+                onClick={() => removeFromWishlist(item)}
+                disabled={deleting[item.productId._id]}
               >
-                Remove from Cart
+                {deleting[item.productId._id]
+                  ? "Removing..."
+                  : "Remove from Wishlist"}
               </button>
             </div>
           </li>
