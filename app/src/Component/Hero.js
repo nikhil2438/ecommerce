@@ -104,7 +104,7 @@ const Hero = () => {
             className="bg-white p-10 cursor-pointer rounded-lg shadow-md sm:w-60 md:w-80"
             onClick={() => handleProductClick(product._id)}
           >
-            <h4 className="text-slate-800 text-lg font-medium truncate">
+            <h4 className="text-slate-800 text-lg font-medium">
               {product.description}
             </h4>
             <StarRating rating={4} />
