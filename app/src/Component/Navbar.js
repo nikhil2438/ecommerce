@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../image/logo.png";
 import React, { useState, useEffect, useRef } from "react";
 import AccountMenu from "./AccountMenu";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const menuRef = useRef(null);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,6 +30,19 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isMenuOpen]);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchClick = () => {
+    if (searchQuery.trim()) {
+      navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery("");
+    } else {
+      alert("Please enter a search term");
+    }
+  };
 
   return (
     <nav className="navbar fixed top-0 left-0 right-0 z-20 flex justify-between bg-gray-900 items-center py-3 px-4 sm:px-6">

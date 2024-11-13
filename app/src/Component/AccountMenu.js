@@ -24,14 +24,14 @@ const AccountMenu = () => {
 
   return (
     <div
-      className="relative"
+      className="relative "
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <span className="text-white cursor-pointer">Hello Guest </span>
 
       {isOpen && (
-        <div className="absolute top-full right-0 bg-slate-800 text-white p-5 shadow-lg w-80 z-20 md:h-96 mt-4 sm:left-1/2 sm:-translate-x-1/2">
+        <div className="absolute top-full right-0 bg-slate-800 text-white p-5 shadow-lg w-80 z-20 md:h-96 mt-4 left-1/2 -translate-x-1/2">
           <ul>
             <li className="hover:bg-gray-700 p-2 cursor-pointer text-xl">
               Your Account

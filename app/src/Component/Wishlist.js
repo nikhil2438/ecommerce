@@ -5,17 +5,13 @@ const Wishlist = () => {
   const [wishlistItems, setWishlistItems] = useState([]);
   const [error, setError] = useState(null);
   const [deleting, setDeleting] = useState({});
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchWishlistItems = async () => {
       try {
         const response = await axios.get(
-          "https://ever-deal.onrender.com/users/wishlist",
-          {
-            headers: {
-              Authorization: "Bearer <your-auth-token>",
-            },
-          }
+          "https://ever-deal.onrender.com/users/wishlist"
         );
         if (response.data && response.data.data) {
           setWishlistItems(response.data.data);
@@ -29,7 +25,7 @@ const Wishlist = () => {
     };
 
     fetchWishlistItems();
-  }, []);
+  }, [refresh]);
 
   const subtotal = wishlistItems.reduce(
     (acc, item) => acc + item.productId.price * item.productId.quantity,
@@ -43,11 +39,6 @@ const Wishlist = () => {
         {
           productId: item.productId._id,
           quantity: item.productId.quantity,
-        },
-        {
-          headers: {
-            Authorization: "Bearer <your-auth-token>",
-          },
         }
       );
       if (response.status === 200) {
@@ -59,31 +50,25 @@ const Wishlist = () => {
     }
   };
 
-  const removeFromWishlist = async (item) => {
-    const itemId = item.productId._id;
-    setDeleting((prev) => ({ ...prev, [itemId]: true }));
+  const removeFromWishlist = async (productId) => {
+    setDeleting((prev) => ({ ...prev, [productId]: true }));
     try {
       const response = await axios.delete(
-        `https://ever-deal.onrender.com/users/removefromwishlist/${itemId}`,
-        {
-          headers: {
-            Authorization: "Bearer <your-auth-token>",
-          },
-        }
+        `https://ever-deal.onrender.com/users/removefromwishlist/${productId}`
       );
       if (response.status === 200) {
-        setWishlistItems(
-          wishlistItems.filter((i) => i.productId._id !== itemId)
-        );
+        console.log("Item successfully removed:", response.data);
+
         alert("Item removed from wishlist!");
+        setRefresh(!refresh);
       } else {
         alert("Failed to remove item from wishlist.");
       }
     } catch (error) {
-      console.error("Error removing item from wishlist:", error);
+      console.log("Error removing item from wishlist:", error);
       setError("Failed to remove item from wishlist. Please try again.");
     } finally {
-      setDeleting((prev) => ({ ...prev, [itemId]: false }));
+      setDeleting((prev) => ({ ...prev, [productId]: false }));
     }
   };
 
@@ -140,7 +125,7 @@ const Wishlist = () => {
 
               <button
                 className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md mt-4 lg:mt-0"
-                onClick={() => removeFromWishlist(item)}
+                onClick={() => removeFromWishlist(item?.productId?._id)}
                 disabled={deleting[item.productId._id]}
               >
                 {deleting[item.productId._id]
