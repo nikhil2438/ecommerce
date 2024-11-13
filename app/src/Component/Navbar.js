@@ -31,12 +31,10 @@ const Navbar = () => {
 
   return (
     <nav className="navbar fixed top-0 left-0 right-0 z-20 flex justify-between bg-gray-900 items-center py-3 px-4 sm:px-6">
-      {/* LOGO */}
       <div className="logo cursor-pointer">
         <img className="h-10" src={logo} alt="logo" />
       </div>
 
-      {/* Search Bar */}
       <div className="hidden md:flex w-1/4 h-12 bg-white items-center rounded border border-gray-300 focus:outline-none">
         <input
           type="text"

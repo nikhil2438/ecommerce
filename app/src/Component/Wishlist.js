@@ -13,7 +13,7 @@ const Wishlist = () => {
           "https://ever-deal.onrender.com/users/wishlist",
           {
             headers: {
-              Authorization: "Bearer <your-auth-token>", 
+              Authorization: "Bearer <your-auth-token>",
             },
           }
         );
@@ -46,7 +46,7 @@ const Wishlist = () => {
         },
         {
           headers: {
-            Authorization: "Bearer <your-auth-token>", 
+            Authorization: "Bearer <your-auth-token>",
           },
         }
       );
@@ -67,7 +67,7 @@ const Wishlist = () => {
         `https://ever-deal.onrender.com/users/removefromwishlist/${itemId}`,
         {
           headers: {
-            Authorization: "Bearer <your-auth-token>", 
+            Authorization: "Bearer <your-auth-token>",
           },
         }
       );

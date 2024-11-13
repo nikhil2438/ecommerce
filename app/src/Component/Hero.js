@@ -75,12 +75,16 @@ const Hero = () => {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = async (productId, event) => {
-    event.stopPropagation();
+  const handleAddToCart = async (productId) => {
+    console.log(productId);
+    // event.stopPropagation();
     try {
-      await axios.post("https://ever-deal.onrender.com/users/addtocart", {
-        productId,
-      });
+      const res = await axios.post(
+        "https://ever-deal.onrender.com/users/addtocart",
+        {
+          productId,
+        }
+      );
       navigate("/cart");
     } catch (error) {
       console.error("Error adding product to cart:", error);
@@ -104,23 +108,25 @@ const Hero = () => {
             className="bg-white p-10 cursor-pointer rounded-lg shadow-md sm:w-60 md:w-80"
             onClick={() => handleProductClick(product._id)}
           >
-            <h4 className="text-slate-800 text-lg font-medium">
-              {product.description}
-            </h4>
-            <StarRating rating={4} />
-            <p className="text-blue-800 text-lg font-medium">
-              ₹{product.price}
-            </p>
             <img
               src={product.imageUrl || "placeholder.jpg"}
               alt={product.name}
-              className="w-full h-64 mt-4 rounded-lg"
+              className="w-full h-64 rounded-lg"
             />
-            <p className="text-slate-600 mt-2 truncate">{product.name}</p>
+            <div className="mt-4">
+              <h4 className="text-slate-800 text-lg font-medium">
+                {product.description}
+              </h4>
+              <StarRating rating={4} />
+              <p className="text-blue-800 text-lg font-medium">
+                ₹{product.price}
+              </p>
+              <p className="text-slate-600 mt-2 truncate">{product.name}</p>
+            </div>
             <div className="flex justify-center mt-4 space-x-4">
               <button
                 className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg"
-                onClick={(event) => handleAddToCart(product._id, event)}
+                onClick={() => handleAddToCart(product?._id)}
               >
                 Add To Cart
               </button>
