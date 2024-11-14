@@ -50,13 +50,13 @@ const Navbar = () => {
         <img className="h-10" src={logo} alt="logo" />
       </div>
 
-      <div className="hidden md:flex w-1/4 h-12 bg-white items-center rounded border border-gray-300 focus:outline-none">
+      <div className="hidden md:flex h-12  items-center rounded   focus:outline-none">
         <input
           type="text"
           className="flex-grow px-4 py-2 rounded-l-md text-gray-700 focus:outline-none"
           placeholder="Search..."
         />
-        <div className="h-full p-2 bg-yellow-500 rounded-r-md text-white">
+        <div className="h-[40px] p-2 bg-yellow-500 rounded-r-md text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -76,7 +76,11 @@ const Navbar = () => {
 
       {/* Hamburger Button (for mobile) */}
       <div className="md:hidden">
-        <button className="text-white focus:outline-none" onClick={toggleMenu}>
+        <button
+          className="text-white focus:outline-none"
+          onClick={toggleMenu}
+          ref={menuRef}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

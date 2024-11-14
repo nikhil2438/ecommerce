@@ -5,6 +5,7 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [error, setError] = useState(null);
   const [deleting, setDeleting] = useState({});
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -15,13 +16,13 @@ const Cart = () => {
         const items = response.data?.data || [];
         setCartItems(items);
       } catch (error) {
-        console.error("Error fetching cart items:", error);
+        console.error("Error fetching cart items:", error.response || error);
         setError("Error fetching cart items");
       }
     };
 
     fetchCartItems();
-  }, []);
+  }, [refresh]);
 
   const subtotal = cartItems.reduce((total, item) => {
     const itemTotal = (item.productId.price ?? 0) * (item.quantity ?? 1);
@@ -31,16 +32,20 @@ const Cart = () => {
   const handleRemoveItem = async (itemId) => {
     setDeleting((prev) => ({ ...prev, [itemId]: true }));
     try {
-      await axios.delete(
-        `https://ever-deal.onrender.com/users/removefromcart/${itemId}`
+      const response = await axios.delete(
+        `https://ever-deal.onrender.com/users/deletecartItem/${itemId}`
       );
+      if (response && response.status === 200) {
+        console.log("Item successfully removed from cart:", response.data);
+        alert("Item removed from cart!");
 
-      setCartItems((prevItems) =>
-        prevItems.filter((item) => item.productId._id !== itemId)
-      );
+        setRefresh(!refresh);
+      } else {
+        alert("Failed to remove item from cart.");
+      }
     } catch (error) {
-      console.error("Error removing item:", error);
-      setError("Could not remove item. Please try again.");
+      console.error("Error removing item from cart:", error.response || error);
+      setError("Failed to remove item from cart. Please try again.");
     } finally {
       setDeleting((prev) => ({ ...prev, [itemId]: false }));
     }

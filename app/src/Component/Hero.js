@@ -77,7 +77,8 @@ const Hero = () => {
 
   const handleAddToCart = async (productId) => {
     console.log(productId);
-    // event.stopPropagation();
+    localStorage.setItem("productId", productId);
+
     try {
       const res = await axios.post(
         "https://ever-deal.onrender.com/users/addtocart",
@@ -85,6 +86,7 @@ const Hero = () => {
           productId,
         }
       );
+
       navigate("/cart");
     } catch (error) {
       console.error("Error adding product to cart:", error);
@@ -106,7 +108,10 @@ const Hero = () => {
           <div
             key={product._id}
             className="bg-white p-10 cursor-pointer rounded-lg shadow-md sm:w-60 md:w-80"
-            onClick={() => handleProductClick(product._id)}
+            onClick={() => {
+              localStorage.setItem("productId", product._id);
+              handleProductClick(product._id);
+            }}
           >
             <img
               src={product.imageUrl || "placeholder.jpg"}

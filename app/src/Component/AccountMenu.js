@@ -5,12 +5,8 @@ const AccountMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleMouseEnter = () => {
-    setIsOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsOpen(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
   const handleSignOut = () => {
@@ -23,12 +19,10 @@ const AccountMenu = () => {
   };
 
   return (
-    <div
-      className="relative "
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <span className="text-white cursor-pointer">Hello Guest </span>
+    <div className="relative">
+      <span className="text-white cursor-pointer" onClick={toggleMenu}>
+        Hello Guest
+      </span>
 
       {isOpen && (
         <div className="absolute top-full right-0 bg-slate-800 text-white p-5 shadow-lg w-80 z-20 md:h-96 mt-4 left-1/2 -translate-x-1/2">

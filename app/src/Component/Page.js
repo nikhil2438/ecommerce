@@ -2,10 +2,9 @@ import React, { useState } from "react";
 const ProductPage = () => {
   return (
     <div className="p-4 max-w-7xl mx-auto">
-      {/* Header Section */}
       <header className="flex items-center justify-between py-4 border-b">
         <h1 className="text-xl font-semibold">Amazon Product Page</h1>
-        {/* Navigation Links */}
+
         <nav>
           <ul className="flex space-x-4">
             <li>
@@ -27,9 +26,7 @@ const ProductPage = () => {
         </nav>
       </header>
 
-      {/* Main Content Section */}
       <main className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
-        {/* Left Section: Product Images */}
         <div className="space-y-4">
           <div className="w-full">
             <img

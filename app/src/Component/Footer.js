@@ -1,4 +1,4 @@
-//  
+//
 import React from "react";
 import Slider from "./Slider";
 import Hero from "./Hero";
@@ -48,7 +48,6 @@ const Footer = () => {
       </div>
 
       <div className="bg-slate-800 p-4 text-center border-t border-slate-100 text-white ">
-        
         <div className="flex items-center justify-center mt-2 pb-8 ">
           <img src={logo} alt="logo" className="mb-4 w-24 m mr-6" />
           <div className="language-buttons">
