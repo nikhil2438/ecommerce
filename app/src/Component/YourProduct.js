@@ -1,23 +1,13 @@
-import React  from 'react';
- import HoverMenu from './HoverMenu';
-
-
+import React from "react";
+import HoverMenu from "./HoverMenu";
 
 const YourProduct = () => {
-  return(
-  
-     <HoverMenu/>
-    
-   
-    
+  return (
+    <div className="mt-40">
+      Your Product
+      <HoverMenu />;
+    </div>
   );
-  };
-  
-  export default YourProduct;
-    
+};
 
-     
-    
-
-
-
+export default YourProduct;

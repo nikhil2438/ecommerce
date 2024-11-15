@@ -26,7 +26,7 @@ import UpdatePassword from "./Component/UpdatePassword";
 
 const App = () => {
   return (
-    <>
+    <div className="w-screen">
       <Navbar />
 
       <Routes>
@@ -52,8 +52,9 @@ const App = () => {
         <Route path="/new-user" element={<CreateAccountPage />} />
         <Route path="/page" element={<Page />} />
       </Routes>
+
       <Footer />
-    </>
+    </div>
   );
 };
 

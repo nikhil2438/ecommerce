@@ -95,47 +95,56 @@ const Hero = () => {
   };
 
   const handleProductClick = (productId) => {
-    navigate(`/productpage/${productId}`);
+    navigate(`/productpage`);
   };
 
   if (loading) return <div className="text-center">Loading...</div>;
   if (error) return <div className="text-center text-red-500">{error}</div>;
 
   return (
-    <div className="bg-white px-2 py-2">
-      <div className="flex flex-wrap gap-2 mx-4 justify-center md:justify-between">
+    <div className="bg-white px-2 py-2 w-full ">
+      <div className="flex  flex-wrap  mx-4  items-center   ">
         {products.map((product) => (
           <div
             key={product._id}
-            className="bg-white p-10 cursor-pointer rounded-lg shadow-md sm:w-60 md:w-80"
+            className="bg-white p-4 cursor-pointer rounded-lg shadow-md flex flex-col md:flex-row md:w-1/2 "
             onClick={() => {
               localStorage.setItem("productId", product._id);
               handleProductClick(product._id);
             }}
           >
-            <img
-              src={product.imageUrl || "placeholder.jpg"}
-              alt={product.name}
-              className="w-full h-64 rounded-lg"
-            />
-            <div className="mt-4">
-              <h4 className="text-slate-800 text-lg font-medium">
-                {product.description}
-              </h4>
-              <StarRating rating={4} />
-              <p className="text-blue-800 text-lg font-medium">
-                ₹{product.price}
-              </p>
-              <p className="text-slate-600 mt-2 truncate">{product.name}</p>
+            <div className="w-full md:w-64  flex justify-center">
+              <img
+                src={product.imageUrl || "placeholder.jpg"}
+                alt={product.name}
+                className="  h-48 object-cover rounded-lg"
+              />
             </div>
-            <div className="flex justify-center mt-4 space-x-4">
-              <button
-                className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg"
-                onClick={() => handleAddToCart(product?._id)}
-              >
-                Add To Cart
-              </button>
-              <HeartButton productId={product._id} />
+
+            <div className="flex flex-col justify-between w-full md:w-2/3 md:ml-4">
+              <div className="mt-4 md:mt-0">
+                <h4 className="text-slate-800 text-lg font-medium">
+                  {product.description}
+                </h4>
+                <StarRating rating={4} />
+                <p className="text-blue-800 text-lg font-medium">
+                  ₹{product.price}
+                </p>
+                <p className="text-slate-600 mt-2 truncate">{product.name}</p>
+              </div>
+              <div className="flex justify-center mt-4  md:mt-8 space-x-4 flex-col md:flex-row">
+                <button
+                  className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg w-full md:w-auto"
+                  onClick={(e) => {
+                    e.stopPropagation();
+
+                    handleAddToCart(product?._id);
+                  }}
+                >
+                  Add To Cart
+                </button>
+                <HeartButton productId={product._id} />
+              </div>
             </div>
           </div>
         ))}

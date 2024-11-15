@@ -9,13 +9,19 @@ const AccountMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   const handleSignOut = () => {
     localStorage.clear();
     navigate("/");
+    closeMenu();
   };
 
   const handleSignIn = () => {
     navigate("/signin");
+    closeMenu();
   };
 
   return (

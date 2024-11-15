@@ -32,7 +32,7 @@ const ChangePassword = () => {
   return (
     <>
       <Link to="/">
-        <div className="flex justify-center mb-4 mt-4">
+        <div className="flex justify-center mb-10 mt-24">
           <img
             src={logo}
             alt="Logo"

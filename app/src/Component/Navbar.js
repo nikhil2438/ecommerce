@@ -47,7 +47,9 @@ const Navbar = () => {
   return (
     <nav className="navbar fixed top-0 left-0 right-0 z-20 flex justify-between bg-gray-900 items-center py-3 px-4 sm:px-6">
       <div className="logo cursor-pointer">
-        <img className="h-10" src={logo} alt="logo" />
+        <Link to="/">
+          <img className="h-10" src={logo} alt="logo" />
+        </Link>
       </div>
 
       <div className="hidden md:flex h-12  items-center rounded   focus:outline-none">
@@ -74,7 +76,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Hamburger Button (for mobile) */}
       <div className="md:hidden">
         <button
           className="text-white focus:outline-none"

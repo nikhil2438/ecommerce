@@ -85,12 +85,12 @@ const Wishlist = () => {
           />
         </div>
 
-        <div className="w-full lg:w-1/3 bg-gray-100 p-6 rounded-md shadow-md">
+        <div className="w-full lg:w-1/3 bg-gray-100 p-6 rounded-md shadow-md  mt-20">
           <h3 className="text-xl font-bold">
             Subtotal ({wishlistItems.length} items): ₹{subtotal.toFixed(2)}
           </h3>
 
-          <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 mt-4 rounded-md w-full">
+          <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 mt-12 rounded-md w-full ">
             Proceed to Checkout
           </button>
         </div>
@@ -117,14 +117,14 @@ const Wishlist = () => {
               <div>Rating: {item.productId.rating} ⭐</div>
 
               <button
-                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md mt-4 lg:mt-0"
+                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md"
                 onClick={() => addToCart(item)}
               >
                 Add to Cart
               </button>
 
               <button
-                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md mt-4 lg:mt-0"
+                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md ml-4 "
                 onClick={() => removeFromWishlist(item?.productId?._id)}
                 disabled={deleting[item.productId._id]}
               >
