@@ -32,7 +32,7 @@ const ChangePassword = () => {
   return (
     <>
       <Link to="/">
-        <div className="flex justify-center mb-10 mt-24">
+        <div className="flex justify-center  mt-20">
           <img
             src={logo}
             alt="Logo"
@@ -41,7 +41,7 @@ const ChangePassword = () => {
         </div>
       </Link>
 
-      <div className="flex items-center justify-center mt-10 bg-gray-50">
+      <div className="flex items-center justify-center mt-10 bg-gray-50 mb-8">
         <div className="bg-white p-5 rounded-lg shadow-lg border-2 border-slate-500 w-90 flex flex-col h-fit">
           <h2 className="text-3xl font-semibold mb-6">Change Password</h2>
           <form onSubmit={handleSubmit} className="space-y-4">

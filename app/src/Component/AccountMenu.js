@@ -37,27 +37,27 @@ const AccountMenu = () => {
               Your Account
             </li>
             <li className="hover:bg-gray-700 p-2 cursor-pointer">
-              <Link to="/profile">
+              <Link to="/profile" onclick={closeMenu} reloadDocument>
                 <div>Profile</div>
               </Link>
             </li>
             <li className="hover:bg-gray-700 p-2 cursor-pointer">
-              <Link to="/wishlist">
+              <Link to="/wishlist" onClick={closeMenu}>
                 <div>Wishlist</div>
               </Link>
             </li>
             <li className="hover:bg-gray-700 p-2 cursor-pointer">
-              <Link to="/orders">
+              <Link to="/orders" onClick={closeMenu}>
                 <div>Your Product</div>
               </Link>
             </li>
             <li className="hover:bg-gray-700 p-2 cursor-pointer">
-              <Link to="/changepassword">
+              <Link to="/changepassword" onClick={closeMenu}>
                 <div>Change Password</div>
               </Link>
             </li>
             <li className="hover:bg-gray-700 p-2 cursor-pointer">
-              <Link to="/deleteaccount">
+              <Link to="/deleteaccount" onClick={closeMenu}>
                 <div>Delete Your Account</div>
               </Link>
             </li>

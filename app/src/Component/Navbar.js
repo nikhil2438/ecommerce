@@ -112,10 +112,10 @@ const Navbar = () => {
             <AccountMenu />
           </li>
           <li className="hover:text-yellow-600 cursor-pointer">
-            <Link to="/Corporate">Corporate Gifting</Link>
+            <Link to="/CorporateGifting">Corporate Gifting</Link>
           </li>
           <li className="hover:text-yellow-600 cursor-pointer">
-            <Link to="/ReturnsOrders">Return & Order</Link>
+            <Link to="/ReturnOrder">Return & Order</Link>
           </li>
           <li className="hover:text-yellow-600 cursor-pointer">
             <Link to="/YourProduct">Your Product</Link>

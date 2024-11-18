@@ -18,11 +18,10 @@ const SignInPage = () => {
 
   const handleSignIn = async () => {
     setLoading(true);
-    setError(""); // Clear any previous error messages
+    setError("");
 
-    // Validate if input is either a valid email or phone number
     const isEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
-    const isPhone = /^\d{10}$/.test(email); // Assuming phone is 10 digits
+    const isPhone = /^\d{10}$/.test(email);
 
     if (!isEmail && !isPhone) {
       setError("Please enter a valid phone number or email.");
@@ -70,14 +69,17 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="mt-32">
+    <div className="mt-32 mb-10">
       <Link to="/">
         <div className="flex justify-center mb-4 mt-4">
           <img src={Logo1} alt="Logo" className="h-8 shadow-lg" />
         </div>
       </Link>
       <div className="flex items-center justify-center bg-white-500">
-        <div className="bg-white p-8 rounded-lg shadow-md w-96">
+        <div
+          className="bg-white p-8 rounded-lg shadow-md w-96 border-2"
+          style={{ borderColor: "#000000" }}
+        >
           <h2 className="text-2xl font-semibold text-center mb-6">Sign In</h2>
           <form
             onSubmit={(e) => {
@@ -87,7 +89,7 @@ const SignInPage = () => {
           >
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-medium mb-2"
+                className="block text-gray-700 text-sm font-medium mb-2 "
                 htmlFor="email"
               >
                 Email
@@ -97,14 +99,14 @@ const SignInPage = () => {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-2 border-black"
                 placeholder="Email"
                 required
               />
             </div>
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-medium mb-2"
+                className="block text-gray-700 text-sm font-medium mb-2 "
                 htmlFor="password"
               >
                 Password
@@ -114,7 +116,7 @@ const SignInPage = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black"
                 placeholder="Password"
                 required
               />

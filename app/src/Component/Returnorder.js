@@ -4,11 +4,12 @@ import Orders from "./Order";
 
 const Returnorder = () => {
   return (
-    <>
-      <h1 class="text-slate-800 text-4xl mt-30 mx-60">Your Order</h1>
-
-      <h5 class="text-slate-800 mt-30 mx-60"> No orders found</h5>
-    </>
+    <div className="pt-8  ">
+      <h1 className="text-slate-800 text-4xl mt-20 mx-6  text-center">
+        Your Order
+      </h1>
+      <h5 className="text-slate-800 mt-4 mx-6 text-center">No orders found</h5>
+    </div>
   );
 };
 

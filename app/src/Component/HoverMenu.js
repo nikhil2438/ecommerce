@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 const HoverMenu = () => {
-
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
@@ -11,7 +10,6 @@ const HoverMenu = () => {
       document.body.style.overflow = "auto";
     }
 
-  
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -23,14 +21,11 @@ const HoverMenu = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-    
-      <div className="cursor-pointer text-white">Your</div>
-      <h4>Product</h4>
+      <div className="cursor-pointer text-white">Your Product</div>
 
       {isHovered && (
-        <div className="fixed top-20 left-0 w-full h-[400px] z-50 flex justify-center">
+        <div className="absolute top-20 left-0 w-full h-[400px] z-50 flex justify-center">
           <div className="bg-slate-900 text-white w-[100%] p-5 rounded-lg shadow-lg md:h-96 fixed top-20">
-         
             <div className="grid md:grid-cols-4 gap-12">
               <div>
                 <h2 className="text-xl font-semibold">Watches</h2>

@@ -45,7 +45,7 @@ const Deleteaccount = () => {
   return (
     <>
       <Link to="/">
-        <div className="flex justify-center mb-10 mt-24">
+        <div className="flex justify-center  mt-20">
           <img
             src={logo}
             alt="Logo"
@@ -54,7 +54,7 @@ const Deleteaccount = () => {
         </div>
       </Link>
 
-      <div className="flex justify-center bg-white mt-10">
+      <div className="flex justify-center bg-white mt-10 mb-8">
         <div className="bg-white p-5 rounded-lg shadow-lg border-2 border-slate-500 w-90 flex flex-col h-fit">
           <h2 className="text-2xl font-semibold mb-6">Delete Your Account</h2>
           <form onSubmit={handleSubmit} className="space-y-4">

@@ -26,7 +26,7 @@ import UpdatePassword from "./Component/UpdatePassword";
 
 const App = () => {
   return (
-    <div className="w-screen">
+    <div className="w-screen flex flex-col min-h-screen">
       <Navbar />
 
       <Routes>
