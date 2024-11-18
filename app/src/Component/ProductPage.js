@@ -37,7 +37,11 @@ const ProductPage = () => {
       <div className="max-w-4xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <img src={imageUrl} alt={name} className="w-full rounded-lg" />
+            <img
+              src={imageUrl}
+              alt={name}
+              className="w-3/4 md:w-2/3 mx-auto rounded-lg bg-cover"
+            />
           </div>
           <div>
             <h1 className="text-3xl font-bold">{name}</h1>
