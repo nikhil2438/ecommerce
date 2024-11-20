@@ -143,7 +143,9 @@ const Hero = () => {
                 >
                   Add To Cart
                 </button>
-                <HeartButton productId={product._id} />
+                <div className="flex items-center">
+                  <HeartButton productId={product._id} />
+                </div>
               </div>
             </div>
           </div>

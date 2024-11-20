@@ -54,7 +54,6 @@ const ProductPage = () => {
           </div>
         </div>
 
-        {/* Right Section: Product Info */}
         <div>
           <h2 className="text-2xl font-bold">Noise Pulse 4 Max</h2>
           <p className="text-sm text-gray-500">
@@ -80,7 +79,6 @@ const ProductPage = () => {
             </p>
           </div>
 
-          {/* Buttons */}
           <div className="space-y-2">
             <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-white py-2 rounded-md">
               Add to Cart
@@ -90,7 +88,6 @@ const ProductPage = () => {
             </button>
           </div>
 
-          {/* Offers */}
           <div className="mt-4 p-4 bg-gray-100 rounded-lg">
             <h3 className="text-lg font-semibold">Offers</h3>
             <ul className="list-disc ml-6">
@@ -100,13 +97,6 @@ const ProductPage = () => {
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      {/* <footer className="mt-8 border-t py-4">
-        <p className="text-sm text-gray-500 text-center">
-          © 2024 Amazon Clone. All rights reserved.
-        </p>
-      </footer> */}
     </div>
   );
 };
