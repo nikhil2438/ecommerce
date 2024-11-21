@@ -23,6 +23,8 @@ import ProductPage from "./Component/ProductPage";
 import CreateAccountPage from "./Component/CreateAccountPage";
 import Page from "./Component/Page";
 import UpdatePassword from "./Component/UpdatePassword";
+import Checkout from "./Component/Checkout";
+import OrderPlaced from "./Component/Orderplaced";
 
 const App = () => {
   return (
@@ -51,6 +53,8 @@ const App = () => {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/new-user" element={<CreateAccountPage />} />
         <Route path="/page" element={<Page />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/order-placed" element={<OrderPlaced />} />
       </Routes>
 
       <Footer />

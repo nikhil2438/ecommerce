@@ -9,6 +9,10 @@ const Navbar = () => {
   const menuRef = useRef(null);
   const navigate = useNavigate();
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -99,7 +103,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Desktop Menu */}
       <div className="hidden md:flex gap-4 items-center">
         <ul className="flex gap-7 text-white items-center">
           <li className="hover:text-yellow-600 cursor-pointer">
@@ -152,25 +155,35 @@ const Navbar = () => {
         >
           <ul className="flex flex-col items-center gap-4">
             <li className="hover:text-yellow-600 cursor-pointer">
-              <Link to="/">Home</Link>
+              <Link to="/" onClick={closeMenu}>
+                Home
+              </Link>
             </li>
             <li className="hover:text-yellow-600 cursor-pointer">
-              <Link to="/About">About</Link>
+              <Link to="/About" onClick={closeMenu}>
+                About
+              </Link>
             </li>
             <li className="hover:text-yellow-600 cursor-pointer">
               <AccountMenu />
             </li>
             <li className="hover:text-yellow-600 cursor-pointer">
-              <Link to="/Corporate">Corporate Gifting</Link>
+              <Link to="/Corporate" onClick={closeMenu}>
+                Corporate Gifting
+              </Link>
             </li>
             <li className="hover:text-yellow-600 cursor-pointer">
-              <Link to="/ReturnsOrders">Return & Order</Link>
+              <Link to="/ReturnsOrders" onClick={closeMenu}>
+                Return & Order
+              </Link>
             </li>
             <li className="hover:text-yellow-600 cursor-pointer">
-              <Link to="/Contact">Contact Us</Link>
+              <Link to="/Contact" onClick={closeMenu}>
+                Contact Us
+              </Link>
             </li>
             <li className="hover:text-yellow-600 cursor-pointer">
-              <Link to="/Cart">
+              <Link to="/Cart  " onClick={closeMenu}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

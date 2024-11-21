@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [error, setError] = useState(null);
   const [deleting, setDeleting] = useState({});
   const [refresh, setRefresh] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
@@ -50,6 +51,9 @@ const Cart = () => {
       setDeleting((prev) => ({ ...prev, [itemId]: false }));
     }
   };
+  const handleProceedToCheckout = () => {
+    navigate("/checkout", { state: { cartItems, subtotal } });
+  };
 
   if (error) return <div className="text-center text-red-500">{error}</div>;
 
@@ -60,7 +64,10 @@ const Cart = () => {
           <h3 className="text-xl font-bold">
             Subtotal ({cartItems.length} items): ₹{subtotal.toFixed(2)}
           </h3>
-          <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 mt-4 rounded-md w-full">
+          <button
+            className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 mt-4 rounded-md w-full  "
+            onClick={handleProceedToCheckout}
+          >
             Proceed to Checkout
           </button>
         </div>
