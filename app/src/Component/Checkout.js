@@ -26,17 +26,21 @@ const Checkout = () => {
         setLoading(true);
         setError(null);
         try {
+          const localCartItems =
+            JSON.parse(localStorage.getItem("cartItems")) || [];
+          setCartItems(localCartItems);
+
+          const total = localCartItems.reduce(
+            (sum, item) => sum + item.productId.price * item.quantity,
+            0
+          );
+          setSubtotal(total);
+
           const response = await axios.get(
             "https://ever-deal.onrender.com/users/cartitems"
           );
           const items = response.data?.data || [];
           setCartItems(items);
-
-          const total = items.reduce(
-            (sum, item) => sum + item.productId.price * item.quantity,
-            0
-          );
-          setSubtotal(total);
         } catch (err) {
           console.error("Error fetching cart items:", err);
           setError("Failed to load cart items. Please try again.");
@@ -49,21 +53,57 @@ const Checkout = () => {
     }
   }, [passedCartItems]);
 
-  const handlePlaceOrder = () => {
+  const handlePlaceOrder = async () => {
     if (paymentMethod === "Payment method") {
       alert("Please select a valid payment method.");
       return;
     }
-    const orderId = uuidv4();
-    navigate("/order-placed", {
-      state: {
-        paymentMethod: paymentMethod,
-        cartItems: cartItems,
-        orderId: orderId,
-      },
-    });
-  };
 
+    setLoading(true);
+    setError(null);
+    try {
+      const userId = localStorage.getItem("userId");
+      if (!userId) {
+        alert("User ID not found. Please log in again.");
+        return;
+      }
+
+      const requestBody = {
+        id: userId,
+        address: shippingAddress,
+      };
+
+      const response = await axios.post(
+        "https://ever-deal.onrender.com/orders/cartorder",
+
+        requestBody,
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200 || response.status === 201) {
+        alert("Order placed successfully!");
+      }
+
+      const orderId = uuidv4();
+      navigate("/order-placed", {
+        state: {
+          paymentMethod: paymentMethod,
+          cartItems: cartItems,
+          orderId: orderId,
+        },
+      });
+    } catch (err) {
+      console.error("Error placing the order:", err);
+      setError("Failed to place the order. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
   const incrementQuantity = (productId) => {
     const updatedCartItems = cartItems.map((item) =>
       item.productId._id === productId

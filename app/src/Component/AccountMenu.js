@@ -48,7 +48,7 @@ const AccountMenu = () => {
             </li>
             <li className="hover:bg-gray-700 p-2 cursor-pointer">
               <Link to="/orders" onClick={closeMenu}>
-                <div>Your Product</div>
+                <div>Order Details</div>
               </Link>
             </li>
             <li className="hover:bg-gray-700 p-2 cursor-pointer">
