@@ -25,7 +25,7 @@ import Page from "./Component/Page";
 import UpdatePassword from "./Component/UpdatePassword";
 import Checkout from "./Component/Checkout";
 import OrderPlaced from "./Component/Orderplaced";
-
+import SearchBox from "./Component/Searchbox";
 const App = () => {
   return (
     <div className="w-screen flex flex-col min-h-screen">
@@ -44,6 +44,7 @@ const App = () => {
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/orders/:orderId" element={<Orders />} />
         <Route path="/accountmenu" element={<AccountMenu />} />
         <Route path="/changepassword" element={<ChangePassword />} />
         <Route path="/deleteaccount" element={<Deleteaccount />} />
@@ -55,6 +56,7 @@ const App = () => {
         <Route path="/page" element={<Page />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-placed" element={<OrderPlaced />} />
+        <Route path="/search-box" element={<SearchBox />} />
       </Routes>
 
       <Footer />

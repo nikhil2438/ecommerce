@@ -161,7 +161,7 @@ const Checkout = () => {
                 <img
                   src={item?.productId?.imageUrl}
                   alt={item?.productId?.name}
-                  className="w-24 h-20 object-cover rounded-md mr-8"
+                  className="w-28 h-24 object-contain rounded-md mr-8"
                 />
                 <div>
                   <h3 className="font-bold">{item.productId.name}</h3>

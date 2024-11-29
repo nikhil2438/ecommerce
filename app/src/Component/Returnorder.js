@@ -32,10 +32,10 @@ const Returnorder = () => {
   }
 
   return (
-    <div className="pt-8 mx-4">
+    <div className="pt-12 mx-4">
       <h1 className="text-slate-800 text-3xl my-4 text-center">My Orders</h1>
       {orders.length === 0 ? (
-        <h5 className="text-slate-800 mt-4 text-center">No orders found</h5>
+        <h5 className="text-slate-800 mt-20 text-center">No orders found</h5>
       ) : (
         <div className="space-y-4">
           {orders.map((order) => (
@@ -67,13 +67,17 @@ const Returnorder = () => {
                   <li
                     key={item._id}
                     className="text-sm text-gray-700  cursor-pointer"
-                    onClick={() => navigate(`/product/${item.productId._id}`)}
+                    onClick={() =>
+                      navigate(`/orders/${order.generatedId}`, {
+                        state: { orderId: order.generatedId },
+                      })
+                    }
                   >
-                    <div className="flex items-center space-x-4">
+                    <div className="flex   flex-col sm:flex-row items-center  sm:items-center space-y-2 sm:space-x-4  sm:space-y-0 ">
                       <img
                         src={item.productId.imageUrl}
                         alt={item.productId.name}
-                        className="w-16 h-16 object-cover rounded-md"
+                        className="w-24 h-20 object-contain rounded-md"
                       />
                       <div>
                         <p>

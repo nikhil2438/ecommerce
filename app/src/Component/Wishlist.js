@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const Wishlist = () => {
   const [wishlistItems, setWishlistItems] = useState([]);
   const [error, setError] = useState(null);
@@ -89,10 +89,6 @@ const Wishlist = () => {
           <h3 className="text-xl font-bold">
             Subtotal ({wishlistItems.length} items): ₹{subtotal.toFixed(2)}
           </h3>
-
-          <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 mt-12 rounded-md w-full ">
-            Proceed to Checkout
-          </button>
         </div>
       </div>
 

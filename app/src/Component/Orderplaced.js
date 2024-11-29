@@ -67,7 +67,7 @@ const OrderPlaced = () => {
                     <img
                       src={item.productId.imageUrl}
                       alt={item.productId.name}
-                      className="w-16 h-16 object-cover rounded-md mr-4"
+                      className="w-28 h-24 object-contain rounded-md mr-4"
                     />
                     <div>
                       <p className="font-semibold">{item.productId.name}</p>

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../image/logo.png";
 import React, { useState, useEffect, useRef } from "react";
 import AccountMenu from "./AccountMenu";
+import SearchBox from "./Searchbox";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,7 +53,7 @@ const Navbar = () => {
     <nav className="navbar fixed top-0 left-0 right-0 z-20 flex justify-between bg-gray-900 items-center py-3 px-4 sm:px-6">
       <div className="logo cursor-pointer">
         <Link to="/">
-          <img className="h-10" src={logo} alt="logo" />
+          <img className="sm:h-10 h-8" src={logo} alt="logo" />
         </Link>
       </div>
 
@@ -66,10 +67,10 @@ const Navbar = () => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            viewBox="0 0 24 24"
+            viewBox="0 0 26 26"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="h-6 w-6"
+            className="h-8 w-8"
           >
             <path
               strokeLinecap="round"
@@ -80,7 +81,10 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="md:hidden">
+      <div className="md:hidden flex gap-3">
+        <div class="text-white">
+          <SearchBox></SearchBox>
+        </div>
         <button
           className="text-white focus:outline-none"
           onClick={toggleMenu}
@@ -147,7 +151,6 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
         <div
           ref={menuRef}
