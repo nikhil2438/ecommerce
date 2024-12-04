@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 const SearchBox = () => {
   const [query, setQuery] = useState("");
-
+  const [product, setproduct] = useState(null);
+  const [error, setError] = useState(null);
   const handleSearchChange = (e) => {
     setQuery(e.target.value);
   };

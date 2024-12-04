@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 const Orders = () => {
   const [order, setOrder] = useState(null);
   const [showAllUpdates, setShowAllUpdates] = useState(false);
-
+  const navigate = useNavigate();
   const staticOrderData = {
     orderId: "OD332387972736547100",
     productName: "ADIDAS Clinch-X M Running Shoes For Men",
@@ -25,6 +26,10 @@ const Orders = () => {
       { step: "Order Confirmed", date: "Sep 26", completed: true },
       { step: "Delivered", date: "Oct 01", completed: true },
     ],
+  };
+
+  const handleChatClick = () => {
+    navigate("/chatbot");
   };
 
   useEffect(() => {
@@ -107,7 +112,10 @@ const Orders = () => {
       </div>
 
       <div className="mt-4 text-center">
-        <button className="bg-blue-600 text-white px-6 py-2 rounded">
+        <button
+          className="bg-blue-600 text-white px-6 py-2 rounded"
+          onClick={handleChatClick}
+        >
           Chat with us
         </button>
       </div>

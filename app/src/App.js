@@ -26,6 +26,7 @@ import UpdatePassword from "./Component/UpdatePassword";
 import Checkout from "./Component/Checkout";
 import OrderPlaced from "./Component/Orderplaced";
 import SearchBox from "./Component/Searchbox";
+import Chatbot from "./Component/Chatbot";
 const App = () => {
   return (
     <div className="w-screen flex flex-col min-h-screen">
@@ -57,6 +58,8 @@ const App = () => {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-placed" element={<OrderPlaced />} />
         <Route path="/search-box" element={<SearchBox />} />
+        <Route path="/chatbot" element={<Chatbot />} />
+        <Route path="/chatbot" element={<Chatbot />} />
       </Routes>
 
       <Footer />

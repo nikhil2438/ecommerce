@@ -9,7 +9,6 @@ const Newpassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate if passwords match
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
