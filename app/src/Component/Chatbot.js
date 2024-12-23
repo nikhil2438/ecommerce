@@ -7,32 +7,29 @@ const Chatbot = () => {
   const responses = {
     "where is my product":
       "Please provide your order ID to track your product.",
-    "how can I return my product":
+    "how can i return my product":
       "You can return the product within 30 days of delivery.",
-    "how do I track my order":
+    "how do i track my order":
       "You can track your order by visiting the 'Track Order' section in your account.",
-    "how do I get a refund":
+    "how do i get a refund":
       "Refunds are processed after the product is returned and verified.",
-    "can I cancel my order":
+    "can i cancel my order":
       "Orders can be canceled before shipment. Please contact support for assistance.",
   };
 
   const handleSendMessage = () => {
     if (input.trim()) {
-      const userMessage = input.trim();
-
-      console.log("User message:", userMessage);
+      const userMessage = input.trim().toLowerCase();
 
       const botMessage =
-        responses[userMessage.toLowerCase()] ||
+        responses[userMessage] ||
         "Sorry, I didn't understand that. Can you please rephrase?";
-
-      console.log("Bot response:", botMessage);
 
       setMessages((prevMessages) => [
         ...prevMessages,
-        { user: userMessage, bot: botMessage },
+        { user: input.trim(), bot: botMessage },
       ]);
+
       setInput("");
     }
   };
@@ -43,7 +40,7 @@ const Chatbot = () => {
 
   const handleQuickReply = (reply) => {
     setInput(reply);
-    handleSendMessage();
+    setTimeout(handleSendMessage, 100);
   };
 
   return (
@@ -80,19 +77,19 @@ const Chatbot = () => {
         </button>
         <button
           className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
-          onClick={() => handleQuickReply("how can I return my product")}
+          onClick={() => handleQuickReply("how can i return my product")}
         >
           Return product
         </button>
         <button
           className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
-          onClick={() => handleQuickReply("how do I get a refund")}
+          onClick={() => handleQuickReply("how do i get a refund")}
         >
           Get a refund
         </button>
         <button
           className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
-          onClick={() => handleQuickReply("can I cancel my order")}
+          onClick={() => handleQuickReply("can i cancel my order")}
         >
           Cancel order
         </button>
