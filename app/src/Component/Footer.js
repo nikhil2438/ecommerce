@@ -1,9 +1,8 @@
-//  
 import React from "react";
 import Slider from "./Slider";
 import Hero from "./Hero";
 import logo from "../image/logo.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 const Footer = () => {
   const location = useLocation();
@@ -13,7 +12,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className=" grid md:grid md:grid-cols-4 md:justify-start justify-center bg-slate-800 p-10 text-white cursor-pointer hover:underline ">
+      <div className=" grid md:grid md:grid-cols-4  md:justify-start justify-center bg-slate-800 p-10 text-white cursor-pointer hover:underline ">
         <div>
           <h1 className="text-xl font-bold mb-4">Get to Know Us</h1>
           <p>About us</p>
@@ -48,9 +47,10 @@ const Footer = () => {
       </div>
 
       <div className="bg-slate-800 p-4 text-center border-t border-slate-100 text-white ">
-        
         <div className="flex items-center justify-center mt-2 pb-8 ">
-          <img src={logo} alt="logo" className="mb-4 w-24 m mr-6" />
+          <Link to="/">
+            <img src={logo} alt="logo" className="mb-4 w-24 m mr-6" />
+          </Link>
           <div className="language-buttons">
             <button
               onClick={() => handleLanguageChange("en")}

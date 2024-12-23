@@ -3,7 +3,7 @@ import React from "react";
 const Gettouch = () => {
   return (
     <div>
-      <div class="grid grid-cols-1 md:flex justify-items-center  gap-10 mx-auto  px-16 mt-8 ">
+      <div class="grid grid-cols-1 md:flex justify-items-center  gap-10 mx-auto   px-16 mt-8 ">
         <div class="hidden md:block w-32"></div>
         <div class="border border-slate-400 p-3 shadow-lg">
           <div class="mx-auto flex justify-center">
@@ -50,9 +50,9 @@ const Gettouch = () => {
           </div>
           <h5 class="text-xl font-bold text-slate-700">Have us call you</h5>
           <p>
-          We'll first get a few details about your issue and then someone will call you right away.
+            We'll first get a few details about your issue and then someone will
+            call you right away.
           </p>
-          
 
           <button class=" px-4 py-4 hover:bg-yellow-300 bg-slate-900 rounded-full text-white	 ">
             call me
@@ -60,7 +60,7 @@ const Gettouch = () => {
         </div>
         <div class="hidden md:block w-32"></div>
       </div>
-      
+
       <p className="text-sm md:text-lg font-bold text-black text-center mt-5">
         Here are a few things you can take care of on your own
       </p>
@@ -102,12 +102,20 @@ const Gettouch = () => {
         <div className="">
           <div>
             {" "}
-            <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 2048 1536"><path fill="#0e15ec" d="M896 1084q0-54-7.5-100.5t-24.5-90t-51-68.5t-81-25q-64 64-156 64t-156-64q-47 0-81 25t-51 68.5t-24.5 90T256 1084q0 55 31.5 93.5T363 1216h426q44 0 75.5-38.5T896 1084M768 640q0-80-56-136t-136-56t-136 56t-56 136t56 136t136 56t136-56t56-136m1024 480v-64q0-14-9-23t-23-9h-704q-14 0-23 9t-9 23v64q0 14 9 23t23 9h704q14 0 23-9t9-23m-384-256v-64q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v64q0 14 9 23t23 9h320q14 0 23-9t9-23m384 0v-64q0-14-9-23t-23-9h-192q-14 0-23 9t-9 23v64q0 14 9 23t23 9h192q14 0 23-9t9-23m0-256v-64q0-14-9-23t-23-9h-704q-14 0-23 9t-9 23v64q0 14 9 23t23 9h704q14 0 23-9t9-23M128 256h1792v-96q0-14-9-23t-23-9H160q-14 0-23 9t-9 23zm1920-96v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1728q66 0 113 47t47 113"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="3em"
+              height="3em"
+              viewBox="0 0 2048 1536"
+            >
+              <path
+                fill="#0e15ec"
+                d="M896 1084q0-54-7.5-100.5t-24.5-90t-51-68.5t-81-25q-64 64-156 64t-156-64q-47 0-81 25t-51 68.5t-24.5 90T256 1084q0 55 31.5 93.5T363 1216h426q44 0 75.5-38.5T896 1084M768 640q0-80-56-136t-136-56t-136 56t-56 136t56 136t136 56t136-56t56-136m1024 480v-64q0-14-9-23t-23-9h-704q-14 0-23 9t-9 23v64q0 14 9 23t23 9h704q14 0 23-9t9-23m-384-256v-64q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v64q0 14 9 23t23 9h320q14 0 23-9t9-23m384 0v-64q0-14-9-23t-23-9h-192q-14 0-23 9t-9 23v64q0 14 9 23t23 9h192q14 0 23-9t9-23m0-256v-64q0-14-9-23t-23-9h-704q-14 0-23 9t-9 23v64q0 14 9 23t23 9h704q14 0 23-9t9-23M128 256h1792v-96q0-14-9-23t-23-9H160q-14 0-23 9t-9 23zm1920-96v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1728q66 0 113 47t47 113"
+              />
+            </svg>
             <p>Check on an order</p>
           </div>
         </div>
-
-        
 
         <div class="flex-none  md:w-32 ..."></div>
       </div>

@@ -9,13 +9,11 @@ const Newpassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate if passwords match
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
 
-    // Handle form submission here (e.g., sending new password to backend)
     console.log("Password submitted: ", password);
   };
 

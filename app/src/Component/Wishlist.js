@@ -1,96 +1,134 @@
-import React, { useState } from 'react';
-import Nik from '../image/Nik.jpg';
-import P from '../image/P.jpg';
-import P2 from '../image/P2.jpg';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+const Wishlist = () => {
+  const [wishlistItems, setWishlistItems] = useState([]);
+  const [error, setError] = useState(null);
+  const [deleting, setDeleting] = useState({});
+  const [refresh, setRefresh] = useState(false);
 
-const   Wishlist = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Helix by Timex Analog Silver Dial Men\'s Watch',
-      image: Nik,
-      price: 1995,
-      quantity: 1,
-      rating: 4.5,
-    },
-    {
-      id: 2,
-      name: 'TIMEX Unisex Stainless Steel Analog Watch',
-      image: P,
-      price: 2995,
-      quantity: 1,
-      rating: 4.8,
-    },
-    {
-      id: 3,
-      name: 'TIMEX Men Beige Round Analog Watch',
-      image: P2,
-      price: 5250,
-      quantity: 1,
-      rating: 4.7,
-    },
-  ]);
+  useEffect(() => {
+    const fetchWishlistItems = async () => {
+      try {
+        const response = await axios.get(
+          "https://ever-deal.onrender.com/users/wishlist"
+        );
+        if (response.data && response.data.data) {
+          setWishlistItems(response.data.data);
+        } else {
+          setError("No wishlist items found.");
+        }
+      } catch (error) {
+        console.error("Error fetching wishlist items:", error);
+        setError("Failed to fetch wishlist items. Please try again later.");
+      }
+    };
 
-  
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    fetchWishlistItems();
+  }, [refresh]);
+
+  const subtotal = wishlistItems.reduce(
+    (acc, item) => acc + item.productId.price * item.productId.quantity,
+    0
+  );
+
+  const addToCart = async (item) => {
+    try {
+      const response = await axios.post(
+        "https://ever-deal.onrender.com/users/addtocart",
+        {
+          productId: item.productId._id,
+          quantity: item.productId.quantity,
+        }
+      );
+      if (response.status === 200) {
+        alert("Item added to cart!");
+      }
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+      alert("Failed to add item to cart.");
+    }
+  };
+
+  const removeFromWishlist = async (productId) => {
+    setDeleting((prev) => ({ ...prev, [productId]: true }));
+    try {
+      const response = await axios.delete(
+        `https://ever-deal.onrender.com/users/removefromwishlist/${productId}`
+      );
+      if (response.status === 200) {
+        console.log("Item successfully removed:", response.data);
+
+        alert("Item removed from wishlist!");
+        setRefresh(!refresh);
+      } else {
+        alert("Failed to remove item from wishlist.");
+      }
+    } catch (error) {
+      console.log("Error removing item from wishlist:", error);
+      setError("Failed to remove item from wishlist. Please try again.");
+    } finally {
+      setDeleting((prev) => ({ ...prev, [productId]: false }));
+    }
+  };
+
+  if (error) return <div className="text-center text-red-500">{error}</div>;
 
   return (
-    <div className="container mx-auto ">
-      {/* Flexbox layout to align image and checkout section */}
+    <div className="container mx-auto">
       <div className="flex flex-col lg:flex-row justify-between items-center mb-6">
-        {/* Image section */}
         <div className="w-full lg:w-2/3 mb-6 lg:mb-0">
-          <img src={Nik} alt="nik" className="w-full  mb-10" /> {/* Adjusted for mobile */}
+          <img
+            src="https://example.com/your-image.jpg"
+            alt="example"
+            className="w-full mb-10"
+          />
         </div>
 
-        {/* Checkout section */}
-        <div className="w-full lg:w-1/3 bg-gray-100 p-6 rounded-md shadow-md">
+        <div className="w-full lg:w-1/3 bg-gray-100 p-6 rounded-md shadow-md  mt-20">
           <h3 className="text-xl font-bold">
-            Subtotal ({cartItems.length} items): ₹{subtotal.toFixed(2)}
+            Subtotal ({wishlistItems.length} items): ₹{subtotal.toFixed(2)}
           </h3>
-
-          <button
-            className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 mt-4 rounded-md w-full"
-          >
-            Proceed to Checkout
-          </button>
         </div>
       </div>
 
-      <h2 className="text-2xl font-bold mb-4">Your Cart Items</h2>
+      <h2 className="text-2xl font-bold mb-4">Your Wishlist Items</h2>
 
-      {/* Display cart items */}
       <ul>
-        {cartItems.map((item) => (
+        {wishlistItems.map((item) => (
           <li
-            key={item.id}
+            key={item.productId._id}
             className="flex flex-col lg:flex-row items-center mb-4 border-b border-gray-300 pb-2"
           >
-            {/* Item image */}
             <img
-              src={item.image}
-              alt={item.name}
+              src={item.productId.imageUrl}
+              alt={item.productId.name}
               className="w-20 h-20 lg:mr-4 mb-4 lg:mb-0"
             />
 
-            {/* Item details */}
             <div className="flex-grow text-center lg:text-left">
-              <h3 className="font-bold">{item.name}</h3>
-              <div>Quantity: {item.quantity}</div>
-              <div>Price: ₹{item.price.toFixed(2)}</div>
-              <div>Rating: {item.rating} ⭐</div>
-              <button
-              className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md mt-4 lg:mt-0"
-              onClick={() => {
-                setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
-              }}
-            >
-              Remove from Cart
-            </button>
-            </div>
+              <h3 className="font-bold">{item.productId.name}</h3>
+              <div>Quantity: {item.productId.quantity}</div>
+              <div>Price: ₹{item.productId.price.toFixed(2)}</div>
+              <div>Rating: {item.productId.rating} ⭐</div>
 
-            {/* Remove from cart button */}
-            
+              <button
+                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md"
+                onClick={() => addToCart(item)}
+              >
+                Add to Cart
+              </button>
+
+              <button
+                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md ml-4 "
+                onClick={() => removeFromWishlist(item?.productId?._id)}
+                disabled={deleting[item.productId._id]}
+              >
+                {deleting[item.productId._id]
+                  ? "Removing..."
+                  : "Remove from Wishlist"}
+              </button>
+            </div>
           </li>
         ))}
       </ul>
